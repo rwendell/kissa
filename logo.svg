@@ -29,24 +29,24 @@
     .furigana {
       fill: var(--kissa-furigana);
       font-family: 'Noto Sans JP', 'Noto Sans', sans-serif;
-      font-size: 64px;
+      font-size: 58px;
       font-weight: 400;
     }
     .pronunciation {
       fill: var(--kissa-fg-dim);
       font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
-      font-size: 44px;
+      font-size: 40px;
       letter-spacing: 12px;
       text-transform: lowercase;
     }
   </style>
   <rect width="1280" height="480" fill="var(--kissa-bg)" />
-  <!-- Furigana above kanji -->
-  <text x="510" y="215" class="furigana">き</text>
-  <text x="680" y="215" class="furigana">さ</text>
+  <!-- Furigana above each kanji, well above the tops -->
+  <text x="450" y="145" class="furigana">きっ</text>
+  <text x="680" y="145" class="furigana">さ</text>
   <!-- Kanji -->
-  <text x="450" y="370" class="kanji">喫</text>
-  <text x="630" y="370" class="kanji">茶</text>
+  <text x="450" y="360" class="kanji">喫</text>
+  <text x="630" y="360" class="kanji">茶</text>
   <!-- Pronunciation -->
-  <text x="640" y="450" text-anchor="middle" class="pronunciation">kissa</text>
+  <text x="640" y="440" text-anchor="middle" class="pronunciation">kissa</text>
 </svg>
