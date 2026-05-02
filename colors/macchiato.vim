@@ -1,6 +1,6 @@
-vim.cmd("hi clear")
-if vim.fn.exists("syntax_on") then
-  vim.cmd("syntax reset")
-end
-vim.g.colors_name = "kissa"
-require("kissa").setup({ variant = "auto" })
+hi clear
+if exists("syntax_on")
+  syntax reset
+endif
+let g:colors_name = "kissa"
+lua require("kissa").setup({ variant = "auto" })
