@@ -12,16 +12,83 @@ WCAG AA+ accessible color schemes rooted in espresso.
 Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
-{ "rwendell/kissa", lazy = false, priority = 1000 }
+{
+  "rwendell/kissa",
+  lazy = false,
+  priority = 1000,
+  config = function()
+    require("kissa").setup({ variant = "auto" })
+  end,
+}
+```
+
+Auto-switches with `set background=`:
+
+```vim
+set background=dark
+colorscheme kissa
+```
+
+Force a variant:
+
+```vim
+colorscheme macchiato    " dark
+colorscheme latte       " light
+```
+
+#### Lualine
+
+```lua
+require("lualine").setup {
+  options = { theme = "kissa" },
+}
+```
+
+### OpenCode
+
+Copy [`extras/opencode/kissa.json`](extras/opencode/kissa.json) to `~/.config/opencode/themes/`, then:
+
+```json
+{ "theme": "kissa" }
 ```
 
 ### Ghostty
 
-Copy `extras/ghostty/*` to `~/.config/ghostty/themes/`, then:
+Copy [`extras/ghostty/`](extras/ghostty/) to `~/.config/ghostty/themes/`, then:
 
 ```
 theme = dark:macchiato,light:latte
 ```
+
+### Kitty
+
+```ini
+include /path/to/kissa/extras/kitty/macchiato.conf
+```
+
+### Alacritty
+
+```toml
+import = ["/path/to/kissa/extras/alacritty/macchiato.toml"]
+```
+
+### WezTerm
+
+Copy [`extras/wezterm/`](extras/wezterm/) to `~/.config/wezterm/colors/`, then:
+
+```lua
+config.color_scheme = "macchiato"
+```
+
+### Foot
+
+```ini
+include=/path/to/kissa/extras/foot/macchiato.ini
+```
+
+### XResources
+
+Copy [`extras/xresources/`](extras/xresources/) and merge with `~/.Xresources`.
 
 ## Palette
 
