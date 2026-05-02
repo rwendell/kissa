@@ -3,29 +3,29 @@ local p = colors.palettes[vim.g.kissa_variant or "macchiato"]
 
 return {
 	normal = {
-		a = { bg = p.blue, fg = p.bg, gui = "bold" },
+		a = { bg = p.surface0, fg = p.fg, gui = "bold" },
 		b = { bg = p.bg_alt, fg = p.fg_dim },
-		c = { bg = p.bg_alt, fg = p.fg_dim },
+		c = { bg = p.bg_alt, fg = p.fg_muted },
 	},
 	insert = {
-		a = { bg = p.green, fg = p.bg, gui = "bold" },
+		a = { bg = p.surface0, fg = p.orange, gui = "bold" },
 		b = { bg = p.bg_alt, fg = p.fg_dim },
-		c = { bg = p.bg_alt, fg = p.fg_dim },
+		c = { bg = p.bg_alt, fg = p.fg_muted },
 	},
 	visual = {
-		a = { bg = p.purple, fg = p.bg, gui = "bold" },
+		a = { bg = p.surface0, fg = p.yellow, gui = "bold" },
 		b = { bg = p.bg_alt, fg = p.fg_dim },
-		c = { bg = p.bg_alt, fg = p.fg_dim },
+		c = { bg = p.bg_alt, fg = p.fg_muted },
 	},
 	replace = {
-		a = { bg = p.orange, fg = p.bg, gui = "bold" },
+		a = { bg = p.surface0, fg = p.red, gui = "bold" },
 		b = { bg = p.bg_alt, fg = p.fg_dim },
-		c = { bg = p.bg_alt, fg = p.fg_dim },
+		c = { bg = p.bg_alt, fg = p.fg_muted },
 	},
 	command = {
-		a = { bg = p.teal, fg = p.bg, gui = "bold" },
+		a = { bg = p.surface0, fg = p.teal, gui = "bold" },
 		b = { bg = p.bg_alt, fg = p.fg_dim },
-		c = { bg = p.bg_alt, fg = p.fg_dim },
+		c = { bg = p.bg_alt, fg = p.fg_muted },
 	},
 	inactive = {
 		a = { bg = p.bg_alt, fg = p.fg_subtle },
