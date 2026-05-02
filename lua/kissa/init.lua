@@ -30,9 +30,6 @@ if opts.variant == "auto" or (not opts.variant and not vim.g.kissa_variant) then
       end,
     })
   end
-      end,
-    })
-  end
 end
 
 function M.colors()
