@@ -87,7 +87,3 @@ theme = dark:macchiato,light:latte
 **Kissa** (喫茶) is Japanese for "coffee house" — specifically the *kissaten* (喫茶店), the quiet, craft-focused coffee shops that predate speciality cafes. 喫 (ki) means "to drink/savor" and 茶 (sa) means "tea" — though in practice it means the place where coffee is served with intention.
 
 Pronounced /kissa/ — "KEE-sah" with a slightly doubled s.
-
-## License
-
-MIT
