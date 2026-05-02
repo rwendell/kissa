@@ -1,5 +1,7 @@
 # Kissa 喫茶
 
+![kissa-logo](logo.svg)
+
 /kissa/ · "KEE-sah" · a Japanese coffee house where craft meets calm
 
 A pair of WCAG AA+ accessible color schemes rooted in espresso brown. **Macchiato** is the dark variant — rich and warm. **Latte** is the light variant — milky white with espresso text. Both share the same core color `#1F1C16`: dark side as background, light side as foreground.

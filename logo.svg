@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   version="1.1"
+   width="1280"
+   height="640"
+   viewBox="0 0 1280 640"
+   xmlns="http://www.w3.org/2000/svg">
+  <style>
+    :root {
+      --kissa-bg: #F5F4F0;
+      --kissa-fg: #1F1C16;
+      --kissa-fg-dim: #6E6459;
+      --kissa-line: #C5C0B8;
+      --kissa-ring: #F5F4F0;
+      --kissa-red: #9E3E3E;
+      --kissa-orange: #8F5D22;
+      --kissa-yellow: #7D6820;
+      --kissa-green: #387050;
+      --kissa-teal: #287070;
+      --kissa-blue: #3468A8;
+      --kissa-purple: #6438A0;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --kissa-bg: #1F1C16;
+        --kissa-fg: #FAF0E6;
+        --kissa-fg-dim: #E8D5B7;
+        --kissa-line: #5D5B57;
+        --kissa-ring: #1F1C16;
+        --kissa-red: #E87777;
+        --kissa-orange: #DA9050;
+        --kissa-yellow: #EAC67A;
+        --kissa-green: #8CB870;
+        --kissa-teal: #6AB8B0;
+        --kissa-blue: #7FA8D4;
+        --kissa-purple: #B094CC;
+      }
+    }
+    .kissa-text {
+      fill: var(--kissa-fg);
+      font-family: 'Noto Serif JP', 'Noto Serif', serif;
+      font-size: 200px;
+      font-style: italic;
+      font-weight: bold;
+    }
+    .kissa-sub {
+      fill: var(--kissa-fg-dim);
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 56px;
+      letter-spacing: 8px;
+    }
+    .kissa-ring {
+      stroke-width: 4;
+      fill: var(--kissa-ring);
+    }
+  </style>
+  <rect width="1280" height="400" fill="var(--kissa-bg)" />
+  <!-- Kanji -->
+  <text x="640" y="300" text-anchor="middle" dominant-baseline="central" class="kissa-text">喫茶</text>
+  <!-- Pronunciation -->
+  <text x="640" y="380" text-anchor="middle" class="kissa-sub" opacity="0.6">KEE-SAH</text>
+  <!-- Color swatches -->
+  <line x1="128" y1="490" x2="1152" y2="490" style="stroke:var(--kissa-line);stroke-width:2" />
+  <circle r="30" cx="256" cy="540" class="kissa-ring" style="stroke:var(--kissa-red)" />
+  <circle r="30" cx="384" cy="540" class="kissa-ring" style="stroke:var(--kissa-orange)" />
+  <circle r="30" cx="512" cy="540" class="kissa-ring" style="stroke:var(--kissa-yellow)" />
+  <circle r="30" cx="640" cy="540" class="kissa-ring" style="stroke:var(--kissa-green)" />
+  <circle r="30" cx="768" cy="540" class="kissa-ring" style="stroke:var(--kissa-teal)" />
+  <circle r="30" cx="896" cy="540" class="kissa-ring" style="stroke:var(--kissa-blue)" />
+  <circle r="30" cx="1024" cy="540" class="kissa-ring" style="stroke:var(--kissa-purple)" />
+</svg>
