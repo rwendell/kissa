@@ -1,8 +1,8 @@
-# Kissa
+# Kissa 喫茶
 
-/kissa/ · "KEE-sah" · 喫茶 · a Japanese coffee house where craft meets calm
+/kissa/ · "KEE-sah" · a Japanese coffee house where craft meets calm
 
-A pair of WCAG AA+ accessible color schemes rooted in espresso brown. **Macchiato** is the dark variant — rich and warm. **Latte** is the light variant — cool paper tones with espresso text. Both share the same core color `#1F1C16`: dark side as background, light side as foreground.
+A pair of WCAG AA+ accessible color schemes rooted in espresso brown. **Macchiato** is the dark variant — rich and warm. **Latte** is the light variant — milky white with espresso text. Both share the same core color `#1F1C16`: dark side as background, light side as foreground.
 
 Auto-switches with `set background=` — one colorscheme, two moods.
 
@@ -92,47 +92,47 @@ Copy `extras/xresources/macchiato.Xresources` and merge with `~/.Xresources`.
 
 ### Macchiato (dark)
 
-| Color | Hex | Usage |
-|-------|-----|-------|
-| `bg` | `#1F1C16` | Background |
-| `bg_alt` | `#35322D` | Statusline, gutters |
-| `surface0` | `#47443F` | Selection, panels |
-| `surface1` | `#5D5B57` | Cursor line, folds |
-| `surface2` | `#6D6B68` | Dim surfaces |
-| `fg` | `#FAF0E6` | Primary text (15.1:1 AAA) |
-| `fg_dim` | `#E8D5B7` | Secondary text (11.8:1 AAA) |
-| `fg_muted` | `#D4C4A8` | Tertiary text (9.9:1 AAA) |
-| `fg_subtle` | `#B8A48C` | Comments (7.1:1 AAA) |
-| `red` | `#E87777` | Errors, deletes (5.9:1 AA) |
-| `orange` | `#DA9050` | Operators, numbers (6.5:1 AA) |
-| `yellow` | `#EAC67A` | Strings, warnings (10.4:1 AAA) |
-| `green` | `#8CB870` | Functions, diff-add (7.5:1 AAA) |
-| `teal` | `#6AB8B0` | Types, regex (7.4:1 AAA) |
-| `blue` | `#7FA8D4` | Keywords, links (6.8:1 AA) |
-| `purple` | `#B094CC` | Constants (6.4:1 AA) |
-| `pink` | `#CC88AA` | Properties (6.2:1 AA) |
+| Color | | Hex | Usage |
+|-------|-|-----|-------|
+| `bg` | ![](https://placehold.co/15x15/1F1C16/1F1C16) | `#1F1C16` | Background |
+| `bg_alt` | ![](https://placehold.co/15x15/35322D/35322D) | `#35322D` | Statusline, gutters |
+| `surface0` | ![](https://placehold.co/15x15/47443F/47443F) | `#47443F` | Selection, panels |
+| `surface1` | ![](https://placehold.co/15x15/5D5B57/5D5B57) | `#5D5B57` | Cursor line, folds |
+| `surface2` | ![](https://placehold.co/15x15/6D6B68/6D6B68) | `#6D6B68` | Dim surfaces |
+| `fg` | ![](https://placehold.co/15x15/FAF0E6/FAF0E6) | `#FAF0E6` | Primary text (15.1:1 AAA) |
+| `fg_dim` | ![](https://placehold.co/15x15/E8D5B7/E8D5B7) | `#E8D5B7` | Secondary text (11.8:1 AAA) |
+| `fg_muted` | ![](https://placehold.co/15x15/D4C4A8/D4C4A8) | `#D4C4A8` | Tertiary text (9.9:1 AAA) |
+| `fg_subtle` | ![](https://placehold.co/15x15/B8A48C/B8A48C) | `#B8A48C` | Comments (7.1:1 AAA) |
+| `red` | ![](https://placehold.co/15x15/E87777/E87777) | `#E87777` | Errors, deletes (5.9:1 AA) |
+| `orange` | ![](https://placehold.co/15x15/DA9050/DA9050) | `#DA9050` | Operators, numbers (6.5:1 AA) |
+| `yellow` | ![](https://placehold.co/15x15/EAC67A/EAC67A) | `#EAC67A` | Strings, warnings (10.4:1 AAA) |
+| `green` | ![](https://placehold.co/15x15/8CB870/8CB870) | `#8CB870` | Functions, diff-add (7.5:1 AAA) |
+| `teal` | ![](https://placehold.co/15x15/6AB8B0/6AB8B0) | `#6AB8B0` | Types, regex (7.4:1 AAA) |
+| `blue` | ![](https://placehold.co/15x15/7FA8D4/7FA8D4) | `#7FA8D4` | Keywords, links (6.8:1 AA) |
+| `purple` | ![](https://placehold.co/15x15/B094CC/B094CC) | `#B094CC` | Constants (6.4:1 AA) |
+| `pink` | ![](https://placehold.co/15x15/CC88AA/CC88AA) | `#CC88AA` | Properties (6.2:1 AA) |
 
 ### Latte (light)
 
-| Color | Hex | Usage |
-|-------|-----|-------|
-| `bg` | `#F5F4F0` | Background |
-| `bg_alt` | `#E8E7E3` | Statusline, gutters |
-| `surface0` | `#D5D2CB` | Selection, panels |
-| `surface1` | `#C5C0B8` | Cursor line, folds |
-| `surface2` | `#B5AFA6` | Dim surfaces |
-| `fg` | `#1F1C16` | Primary text (15.4:1 AAA) |
-| `fg_dim` | `#6E6459` | Secondary text (5.3:1 AA) |
-| `fg_muted` | `#746C62` | Tertiary text (4.7:1 AA) |
-| `fg_subtle` | `#91887D` | Comments (3.2:1 AA Large) |
-| `red` | `#9E3E3E` | Errors, deletes (5.9:1 AA) |
-| `orange` | `#8F5D22` | Operators, numbers (5.1:1 AA) |
-| `yellow` | `#7D6820` | Strings, warnings (4.9:1 AA) |
-| `green` | `#387050` | Functions, diff-add (5.3:1 AA) |
-| `teal` | `#287070` | Types, regex (5.2:1 AA) |
-| `blue` | `#3468A8` | Keywords, links (5.2:1 AA) |
-| `purple` | `#6438A0` | Constants (7.3:1 AAA) |
-| `pink` | `#943A68` | Properties (6.2:1 AA) |
+| Color | | Hex | Usage |
+|-------|-|-----|-------|
+| `bg` | ![](https://placehold.co/15x15/F5F4F0/F5F4F0) | `#F5F4F0` | Background |
+| `bg_alt` | ![](https://placehold.co/15x15/E8E7E3/E8E7E3) | `#E8E7E3` | Statusline, gutters |
+| `surface0` | ![](https://placehold.co/15x15/D5D2CB/D5D2CB) | `#D5D2CB` | Selection, panels |
+| `surface1` | ![](https://placehold.co/15x15/C5C0B8/C5C0B8) | `#C5C0B8` | Cursor line, folds |
+| `surface2` | ![](https://placehold.co/15x15/B5AFA6/B5AFA6) | `#B5AFA6` | Dim surfaces |
+| `fg` | ![](https://placehold.co/15x15/1F1C16/1F1C16) | `#1F1C16` | Primary text (15.4:1 AAA) |
+| `fg_dim` | ![](https://placehold.co/15x15/6E6459/6E6459) | `#6E6459` | Secondary text (5.3:1 AA) |
+| `fg_muted` | ![](https://placehold.co/15x15/746C62/746C62) | `#746C62` | Tertiary text (4.7:1 AA) |
+| `fg_subtle` | ![](https://placehold.co/15x15/91887D/91887D) | `#91887D` | Comments (3.2:1 AA Large) |
+| `red` | ![](https://placehold.co/15x15/9E3E3E/9E3E3E) | `#9E3E3E` | Errors, deletes (5.9:1 AA) |
+| `orange` | ![](https://placehold.co/15x15/8F5D22/8F5D22) | `#8F5D22` | Operators, numbers (5.1:1 AA) |
+| `yellow` | ![](https://placehold.co/15x15/7D6820/7D6820) | `#7D6820` | Strings, warnings (4.9:1 AA) |
+| `green` | ![](https://placehold.co/15x15/387050/387050) | `#387050` | Functions, diff-add (5.3:1 AA) |
+| `teal` | ![](https://placehold.co/15x15/287070/287070) | `#287070` | Types, regex (5.2:1 AA) |
+| `blue` | ![](https://placehold.co/15x15/3468A8/3468A8) | `#3468A8` | Keywords, links (5.2:1 AA) |
+| `purple` | ![](https://placehold.co/15x15/6438A0/6438A0) | `#6438A0` | Constants (7.3:1 AAA) |
+| `pink` | ![](https://placehold.co/15x15/943A68/943A68) | `#943A68` | Properties (6.2:1 AA) |
 
 ## Ports
 
