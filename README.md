@@ -69,17 +69,17 @@ theme = dark:macchiato,light:latte
 
 | Format | Path |
 |--------|------|
-| Neovim | [`colors/macchiato.vim`](colors/macchiato.vim), [`colors/latte.vim`](colors/latte.vim) |
-| Ghostty | [`extras/ghostty/macchiato.theme`](extras/ghostty/macchiato.theme), [`extras/ghostty/latte.theme`](extras/ghostty/latte.theme) |
-| Kitty | [`extras/kitty/macchiato.conf`](extras/kitty/macchiato.conf), [`extras/kitty/latte.conf`](extras/kitty/latte.conf) |
-| Alacritty | [`extras/alacritty/macchiato.toml`](extras/alacritty/macchiato.toml), [`extras/alacritty/latte.toml`](extras/alacritty/latte.toml) |
-| WezTerm | [`extras/wezterm/macchiato.toml`](extras/wezterm/macchiato.toml), [`extras/wezterm/latte.toml`](extras/wezterm/latte.toml) |
-| Foot | [`extras/foot/macchiato.ini`](extras/foot/macchiato.ini), [`extras/foot/latte.ini`](extras/foot/latte.ini) |
-| iTerm2 | [`extras/iterm2/macchiato.itermcolors`](extras/iterm2/macchiato.itermcolors), [`extras/iterm2/latte.itermcolors`](extras/iterm2/latte.itermcolors) |
-| XResources | [`extras/xresources/macchiato.Xresources`](extras/xresources/macchiato.Xresources), [`extras/xresources/latte.Xresources`](extras/xresources/latte.Xresources) |
-| OpenCode | [`extras/opencode/kissa.json`](extras/opencode/kissa.json) |
-| Base16 | [`base16/macchiato.yaml`](base16/macchiato.yaml), [`base16/latte.yaml`](base16/latte.yaml) |
-| Palette TOML | [`colors/macchiato.toml`](colors/macchiato.toml), [`colors/latte.toml`](colors/latte.toml) |
+| Neovim | [`colors/`](colors/) |
+| Ghostty | [`extras/ghostty/`](extras/ghostty/) |
+| Kitty | [`extras/kitty/`](extras/kitty/) |
+| Alacritty | [`extras/alacritty/`](extras/alacritty/) |
+| WezTerm | [`extras/wezterm/`](extras/wezterm/) |
+| Foot | [`extras/foot/`](extras/foot/) |
+| iTerm2 | [`extras/iterm2/`](extras/iterm2/) |
+| XResources | [`extras/xresources/`](extras/xresources/) |
+| OpenCode | [`extras/opencode/`](extras/opencode/) |
+| Base16 | [`base16/`](base16/) |
+| Palette TOML | [`colors/`](colors/) |
 
 
 ## Etymology
