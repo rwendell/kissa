@@ -21,49 +21,25 @@ theme = dark:macchiato,light:latte
 
 ## Palette
 
-### Macchiato (dark)
-
-| Color | | Hex | Usage |
-|-------|-|-----|-------|
-| `bg` | ![](https://placehold.co/15x15/1F1C16/1F1C16) | `#1F1C16` | Background |
-| `bg_alt` | ![](https://placehold.co/15x15/35322D/35322D) | `#35322D` | Statusline, gutters |
-| `surface0` | ![](https://placehold.co/15x15/47443F/47443F) | `#47443F` | Selection, panels |
-| `surface1` | ![](https://placehold.co/15x15/5D5B57/5D5B57) | `#5D5B57` | Cursor line, folds |
-| `surface2` | ![](https://placehold.co/15x15/6D6B68/6D6B68) | `#6D6B68` | Dim surfaces |
-| `fg` | ![](https://placehold.co/15x15/FAF0E6/FAF0E6) | `#FAF0E6` | Primary text (15.1:1 AAA) |
-| `fg_dim` | ![](https://placehold.co/15x15/E8D5B7/E8D5B7) | `#E8D5B7` | Secondary text (11.8:1 AAA) |
-| `fg_muted` | ![](https://placehold.co/15x15/D4C4A8/D4C4A8) | `#D4C4A8` | Tertiary text (9.9:1 AAA) |
-| `fg_subtle` | ![](https://placehold.co/15x15/B8A48C/B8A48C) | `#B8A48C` | Comments (7.1:1 AAA) |
-| `red` | ![](https://placehold.co/15x15/E87777/E87777) | `#E87777` | Errors, deletes (5.9:1 AA) |
-| `orange` | ![](https://placehold.co/15x15/DA9050/DA9050) | `#DA9050` | Operators, numbers (6.5:1 AA) |
-| `yellow` | ![](https://placehold.co/15x15/EAC67A/EAC67A) | `#EAC67A` | Strings, warnings (10.4:1 AAA) |
-| `green` | ![](https://placehold.co/15x15/8CB870/8CB870) | `#8CB870` | Functions, diff-add (7.5:1 AAA) |
-| `teal` | ![](https://placehold.co/15x15/6AB8B0/6AB8B0) | `#6AB8B0` | Types, regex (7.4:1 AAA) |
-| `blue` | ![](https://placehold.co/15x15/7FA8D4/7FA8D4) | `#7FA8D4` | Keywords, links (6.8:1 AA) |
-| `purple` | ![](https://placehold.co/15x15/B094CC/B094CC) | `#B094CC` | Constants (6.4:1 AA) |
-| `pink` | ![](https://placehold.co/15x15/CC88AA/CC88AA) | `#CC88AA` | Properties (6.2:1 AA) |
-
-### Latte (light)
-
-| Color | | Hex | Usage |
-|-------|-|-----|-------|
-| `bg` | ![](https://placehold.co/15x15/F5F4F0/F5F4F0) | `#F5F4F0` | Background |
-| `bg_alt` | ![](https://placehold.co/15x15/E8E7E3/E8E7E3) | `#E8E7E3` | Statusline, gutters |
-| `surface0` | ![](https://placehold.co/15x15/D5D2CB/D5D2CB) | `#D5D2CB` | Selection, panels |
-| `surface1` | ![](https://placehold.co/15x15/C5C0B8/C5C0B8) | `#C5C0B8` | Cursor line, folds |
-| `surface2` | ![](https://placehold.co/15x15/B5AFA6/B5AFA6) | `#B5AFA6` | Dim surfaces |
-| `fg` | ![](https://placehold.co/15x15/1F1C16/1F1C16) | `#1F1C16` | Primary text (15.4:1 AAA) |
-| `fg_dim` | ![](https://placehold.co/15x15/6E6459/6E6459) | `#6E6459` | Secondary text (5.3:1 AA) |
-| `fg_muted` | ![](https://placehold.co/15x15/746C62/746C62) | `#746C62` | Tertiary text (4.7:1 AA) |
-| `fg_subtle` | ![](https://placehold.co/15x15/91887D/91887D) | `#91887D` | Comments (3.2:1 AA Large) |
-| `red` | ![](https://placehold.co/15x15/9E3E3E/9E3E3E) | `#9E3E3E` | Errors, deletes (5.9:1 AA) |
-| `orange` | ![](https://placehold.co/15x15/8F5D22/8F5D22) | `#8F5D22` | Operators, numbers (5.1:1 AA) |
-| `yellow` | ![](https://placehold.co/15x15/7D6820/7D6820) | `#7D6820` | Strings, warnings (4.9:1 AA) |
-| `green` | ![](https://placehold.co/15x15/387050/387050) | `#387050` | Functions, diff-add (5.3:1 AA) |
-| `teal` | ![](https://placehold.co/15x15/287070/287070) | `#287070` | Types, regex (5.2:1 AA) |
-| `blue` | ![](https://placehold.co/15x15/3468A8/3468A8) | `#3468A8` | Keywords, links (5.2:1 AA) |
-| `purple` | ![](https://placehold.co/15x15/6438A0/6438A0) | `#6438A0` | Constants (7.3:1 AAA) |
-| `pink` | ![](https://placehold.co/15x15/943A68/943A68) | `#943A68` | Properties (6.2:1 AA) |
+| Color | Macchiato | Latte | Usage |
+|-------|-----------|-------|-------|
+| `bg` | ![](https://placehold.co/22x22/1F1C16/1F1C16) `#1F1C16` | ![](https://placehold.co/22x22/F5F4F0/F5F4F0) `#F5F4F0` | Background |
+| `bg_alt` | ![](https://placehold.co/22x22/35322D/35322D) `#35322D` | ![](https://placehold.co/22x22/E8E7E3/E8E7E3) `#E8E7E3` | Statusline, gutters |
+| `surface0` | ![](https://placehold.co/22x22/47443F/47443F) `#47443F` | ![](https://placehold.co/22x22/D5D2CB/D5D2CB) `#D5D2CB` | Selection, panels |
+| `surface1` | ![](https://placehold.co/22x22/5D5B57/5D5B57) `#5D5B57` | ![](https://placehold.co/22x22/C5C0B8/C5C0B8) `#C5C0B8` | Cursor line, folds |
+| `surface2` | ![](https://placehold.co/22x22/6D6B68/6D6B68) `#6D6B68` | ![](https://placehold.co/22x22/B5AFA6/B5AFA6) `#B5AFA6` | Dim surfaces |
+| `fg` | ![](https://placehold.co/22x22/FAF0E6/FAF0E6) `#FAF0E6` | ![](https://placehold.co/22x22/1F1C16/1F1C16) `#1F1C16` | Primary text |
+| `fg_dim` | ![](https://placehold.co/22x22/E8D5B7/E8D5B7) `#E8D5B7` | ![](https://placehold.co/22x22/6E6459/6E6459) `#6E6459` | Secondary text |
+| `fg_muted` | ![](https://placehold.co/22x22/D4C4A8/D4C4A8) `#D4C4A8` | ![](https://placehold.co/22x22/746C62/746C62) `#746C62` | Tertiary text |
+| `fg_subtle` | ![](https://placehold.co/22x22/B8A48C/B8A48C) `#B8A48C` | ![](https://placehold.co/22x22/91887D/91887D) `#91887D` | Comments |
+| `red` | ![](https://placehold.co/22x22/E87777/E87777) `#E87777` | ![](https://placehold.co/22x22/9E3E3E/9E3E3E) `#9E3E3E` | Errors, deletes |
+| `orange` | ![](https://placehold.co/22x22/DA9050/DA9050) `#DA9050` | ![](https://placehold.co/22x22/8F5D22/8F5D22) `#8F5D22` | Operators, numbers |
+| `yellow` | ![](https://placehold.co/22x22/EAC67A/EAC67A) `#EAC67A` | ![](https://placehold.co/22x22/7D6820/7D6820) `#7D6820` | Strings, warnings |
+| `green` | ![](https://placehold.co/22x22/8CB870/8CB870) `#8CB870` | ![](https://placehold.co/22x22/387050/387050) `#387050` | Functions, diff-add |
+| `teal` | ![](https://placehold.co/22x22/6AB8B0/6AB8B0) `#6AB8B0` | ![](https://placehold.co/22x22/287070/287070) `#287070` | Types, regex |
+| `blue` | ![](https://placehold.co/22x22/7FA8D4/7FA8D4) `#7FA8D4` | ![](https://placehold.co/22x22/3468A8/3468A8) `#3468A8` | Keywords, links |
+| `purple` | ![](https://placehold.co/22x22/B094CC/B094CC) `#B094CC` | ![](https://placehold.co/22x22/6438A0/6438A0) `#6438A0` | Constants |
+| `pink` | ![](https://placehold.co/22x22/CC88AA/CC88AA) `#CC88AA` | ![](https://placehold.co/22x22/943A68/943A68) `#943A68` | Properties |
 
 ## Ports
 
