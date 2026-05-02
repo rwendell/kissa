@@ -379,6 +379,8 @@ function M.setup(opts)
   vim.g.terminal_color_13 = p.ansi.magenta_bright
   vim.g.terminal_color_14 = p.ansi.cyan_bright
   vim.g.terminal_color_15 = p.ansi.white_bright
+
+  vim.api.nvim_exec_autocmds("ColorScheme", { pattern = "kissa" })
 end
 
 return M

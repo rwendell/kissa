@@ -18,7 +18,7 @@ function M.setup(opts)
 
   require("kissa.highlights").setup({ variant = variant })
 
-  if opts.variant == "auto" or (not opts.variant and not vim.g.kissa_variant) then
+if opts.variant == "auto" or (not opts.variant and not vim.g.kissa_variant) then
     vim.api.nvim_create_autocmd("OptionSet", {
       group = augroup,
       pattern = "background",
@@ -27,6 +27,9 @@ function M.setup(opts)
         if new_variant ~= vim.g.kissa_variant then
           require("kissa.highlights").setup({ variant = new_variant })
         end
+      end,
+    })
+  end
       end,
     })
   end
