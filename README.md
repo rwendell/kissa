@@ -1,10 +1,5 @@
-# ![Kissa 喫茶](logo.svg)
-
-/kissa/ · "KEE-sah" · a Japanese coffee house where craft meets calm
-
+# ![Kissa 喫茶](logo.svg)　喫茶　· /kissa/ · "KEE-sah"
 A pair of WCAG AA+ accessible color schemes rooted in espresso brown. **Macchiato** is the dark variant — rich and warm. **Latte** is the light variant — milky white with espresso text. Both share the same core color `#1F1C16`: dark side as background, light side as foreground.
-
-Auto-switches with `set background=` — one colorscheme, two moods.
 
 ## Quick Start
 
@@ -16,77 +11,13 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 { "rwendell/kissa", lazy = false, priority = 1000 }
 ```
 
-```vim
-" Auto-switches based on 'background':
-set background=dark
-colorscheme kissa
-
-" Or force a variant:
-colorscheme macchiato  " dark
-colorscheme latte      " light
-```
-
-```lua
--- Or via Lua with options:
-require("kissa").setup()           -- auto: macchiato for dark, latte for light
-require("kissa").setup({ variant = "macchiato" })  -- force dark
-require("kissa").setup({ variant = "latte" })      -- force light
-require("kissa").setup({ variant = "auto" })        -- auto-switch on `background` change
-```
-
-### Stylix (NixOS)
-
-```nix
-stylix.base16Scheme = ./path/to/kissa/base16/macchiato.yaml;
-stylix.polarity = "dark";
-# or
-stylix.base16Scheme = ./path/to/kissa/base16/latte.yaml;
-stylix.polarity = "light";
-```
-
 ### Ghostty
 
-Copy `extras/ghostty/macchiato.theme` (or `latte.theme`) to `~/.config/ghostty/themes/`, then:
-
-```
-theme = macchiato
-```
-
-For automatic dark/light switching:
+Copy `extras/ghostty/*` to `~/.config/ghostty/themes/`, then:
 
 ```
 theme = dark:macchiato,light:latte
 ```
-
-### Kitty
-
-```ini
-include /path/to/kissa/extras/kitty/macchiato.conf
-```
-
-### Alacritty
-
-```toml
-import = ["/path/to/kissa/extras/alacritty/macchiato.toml"]
-```
-
-### WezTerm
-
-Copy `extras/wezterm/macchiato.toml` to `~/.config/wezterm/colors/`, then:
-
-```lua
-config.color_scheme = "macchiato"
-```
-
-### Foot
-
-```ini
-include=/path/to/kissa/extras/foot/macchiato.ini
-```
-
-### XResources
-
-Copy `extras/xresources/macchiato.Xresources` and merge with `~/.Xresources`.
 
 ## Palette
 
@@ -150,13 +81,6 @@ Copy `extras/xresources/macchiato.Xresources` and merge with `~/.Xresources`.
 | Base16 | `base16/macchiato.yaml`, `base16/latte.yaml` |
 | Palette TOML | `colors/macchiato.toml`, `colors/latte.toml` |
 
-## Building
-
-All extras are generated from the single source of truth in `lua/kissa/colors.lua`:
-
-```sh
-nvim --headless -u NORC --cmd "set rtp+=." -c "lua require('kissa.build').run()" -c "qa"
-```
 
 ## Etymology
 
