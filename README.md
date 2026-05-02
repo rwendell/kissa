@@ -22,20 +22,6 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 }
 ```
 
-Auto-switches with `set background=`:
-
-```vim
-set background=dark
-colorscheme kissa
-```
-
-Force a variant:
-
-```vim
-colorscheme macchiato    " dark
-colorscheme latte       " light
-```
-
 #### Lualine
 
 ```lua
