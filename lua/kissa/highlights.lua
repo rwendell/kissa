@@ -1,4 +1,4 @@
-local colors = require("macchiato.colors")
+local colors = require("kissa.colors")
 
 local M = {}
 
@@ -9,8 +9,8 @@ function M.setup(opts)
 
   vim.cmd("hi clear")
   vim.o.termguicolors = true
-  vim.g.macchiato_variant = variant
-  vim.g.colors_name = variant
+  vim.g.kissa_variant = variant
+  vim.g.colors_name = "kissa"
 
   local hi = vim.api.nvim_set_hl
   local ns = 0

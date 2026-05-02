@@ -1,7 +1,7 @@
 -- Generate all extras/ ports from palette definitions
--- Usage: nvim --headless -u NORC -c "lua require('macchiato.build').run()" -c "qa"
+-- Usage: nvim --headless -u NORC --cmd "set rtp+=." -c "lua require('kissa.build').run()" -c "qa"
 
-local colors = require("macchiato.colors")
+local colors = require("kissa.colors")
 local M = {}
 
 local function write(path, content)
@@ -379,7 +379,7 @@ function M.run()
   end
 
   -- OpenCode theme (combined dark+light)
-  write(extras .. "/opencode/macchiato-latte.json", M.opencode(colors.palettes, "Macchiato Latte"))
+  write(extras .. "/opencode/kissa.json", M.opencode(colors.palettes, "Kissa"))
 
   -- Base16 YAML files
   for _, variant in ipairs(colors.variants) do

@@ -1,8 +1,92 @@
-# Macchiato & Latte
+# Kissa
 
-A pair of WCAG AA+ accessible color schemes with an espresso brown aesthetic.
+/kissa/ · "KEE-sah" · 喫茶 · a Japanese coffee house where craft meets calm
 
-**Macchiato** is a dark theme rooted in rich espresso brown. **Latte** is a light theme with cool paper tones where that same espresso brown becomes the text. Both share the same core color `#1F1C16` — dark side as background, light side as foreground.
+A pair of WCAG AA+ accessible color schemes rooted in espresso brown. **Macchiato** is the dark variant — rich and warm. **Latte** is the light variant — cool paper tones with espresso text. Both share the same core color `#1F1C16`: dark side as background, light side as foreground.
+
+Auto-switches with `set background=` — one colorscheme, two moods.
+
+## Quick Start
+
+### Neovim
+
+Using [lazy.nvim](https://github.com/folke/lazy.nvim):
+
+```lua
+{ "rwendell/kissa", lazy = false, priority = 1000 }
+```
+
+```vim
+" Auto-switches based on 'background':
+set background=dark
+colorscheme kissa
+
+" Or force a variant:
+colorscheme macchiato  " dark
+colorscheme latte      " light
+```
+
+```lua
+-- Or via Lua with options:
+require("kissa").setup()           -- auto: macchiato for dark, latte for light
+require("kissa").setup({ variant = "macchiato" })  -- force dark
+require("kissa").setup({ variant = "latte" })      -- force light
+require("kissa").setup({ variant = "auto" })        -- auto-switch on `background` change
+```
+
+### Stylix (NixOS)
+
+```nix
+stylix.base16Scheme = ./path/to/kissa/base16/macchiato.yaml;
+stylix.polarity = "dark";
+# or
+stylix.base16Scheme = ./path/to/kissa/base16/latte.yaml;
+stylix.polarity = "light";
+```
+
+### Ghostty
+
+Copy `extras/ghostty/macchiato.theme` (or `latte.theme`) to `~/.config/ghostty/themes/`, then:
+
+```
+theme = macchiato
+```
+
+For automatic dark/light switching:
+
+```
+theme = dark:macchiato,light:latte
+```
+
+### Kitty
+
+```ini
+include /path/to/kissa/extras/kitty/macchiato.conf
+```
+
+### Alacritty
+
+```toml
+import = ["/path/to/kissa/extras/alacritty/macchiato.toml"]
+```
+
+### WezTerm
+
+Copy `extras/wezterm/macchiato.toml` to `~/.config/wezterm/colors/`, then:
+
+```lua
+config.color_scheme = "macchiato"
+```
+
+### Foot
+
+```ini
+include=/path/to/kissa/extras/foot/macchiato.ini
+```
+
+### XResources
+
+Copy `extras/xresources/macchiato.Xresources` and merge with `~/.Xresources`.
 
 ## Palette
 
@@ -50,84 +134,6 @@ A pair of WCAG AA+ accessible color schemes with an espresso brown aesthetic.
 | `purple` | `#6438A0` | Constants (7.3:1 AAA) |
 | `pink` | `#943A68` | Properties (6.2:1 AA) |
 
-## Installation
-
-### Neovim
-
-Using [lazy.nvim](https://github.com/folke/lazy.nvim):
-
-```lua
-{ "rwendell/macchiato", lazy = false, priority = 1000 }
-```
-
-Then in your config:
-
-```lua
-vim.cmd("colorscheme macchiato") -- or "latte"
--- or programmatically:
-require("macchiato").setup({ variant = "macchiato" })
-```
-
-To switch based on `background`:
-
-```lua
-require("macchiato").setup() -- auto: macchiato for dark, latte for light
-```
-
-### Stylix (NixOS)
-
-```nix
-stylix.base16Scheme = ./path/to/macchiato/base16/macchiato.yaml;
-stylix.polarity = "dark";
-# or
-stylix.base16Scheme = ./path/to/macchiato/base16/latte.yaml;
-stylix.polarity = "light";
-```
-
-### Ghostty
-
-Copy `extras/ghostty/macchiato.theme` (or `latte.theme`) to `~/.config/ghostty/themes/`, then:
-
-```
-theme = macchiato
-```
-
-For automatic dark/light switching:
-
-```
-theme = dark:macchiato,light:latte
-```
-
-### Kitty
-
-```ini
-include /path/to/macchiato/extras/kitty/macchiato.conf
-```
-
-### Alacritty
-
-```toml
-import = ["/path/to/macchiato/extras/alacritty/macchiato.toml"]
-```
-
-### WezTerm
-
-Copy `extras/wezterm/macchiato.toml` to `~/.config/wezterm/colors/`, then:
-
-```lua
-config.color_scheme = "macchiato"
-```
-
-### Foot
-
-```ini
-include=/path/to/macchiato/extras/foot/macchiato.ini
-```
-
-### XResources
-
-Copy `extras/xresources/macchiato.Xresources` and merge with your `~/.Xresources`.
-
 ## Ports
 
 | Format | Path |
@@ -140,17 +146,23 @@ Copy `extras/xresources/macchiato.Xresources` and merge with your `~/.Xresources
 | Foot | `extras/foot/macchiato.ini`, `extras/foot/latte.ini` |
 | iTerm2 | `extras/iterm2/macchiato.itermcolors`, `extras/iterm2/latte.itermcolors` |
 | XResources | `extras/xresources/macchiato.Xresources`, `extras/xresources/latte.Xresources` |
-| OpenCode | `extras/opencode/macchiato-latte.json` |
+| OpenCode | `extras/opencode/kissa.json` |
 | Base16 | `base16/macchiato.yaml`, `base16/latte.yaml` |
 | Palette TOML | `colors/macchiato.toml`, `colors/latte.toml` |
 
 ## Building
 
-All extras are generated from the single source of truth in `lua/macchiato/colors.lua`:
+All extras are generated from the single source of truth in `lua/kissa/colors.lua`:
 
 ```sh
-nvim --headless -u NORC --cmd "set rtp+=." -c "lua require('macchiato.build').run()" -c "qa"
+nvim --headless -u NORC --cmd "set rtp+=." -c "lua require('kissa.build').run()" -c "qa"
 ```
+
+## Etymology
+
+**Kissa** (喫茶) is Japanese for "coffee house" — specifically the *kissaten* (喫茶店), the quiet, craft-focused coffee shops that predate speciality cafes. 喫 (ki) means "to drink/savor" and 茶 (sa) means "tea" — though in practice it means the place where coffee is served with intention.
+
+Pronounced /kissa/ — "KEE-sah" with a slightly doubled s.
 
 ## License
 
