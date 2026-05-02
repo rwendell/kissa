@@ -22,13 +22,21 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 }
 ```
 
-#### Lualine
+Auto-switches with `set background=`:
 
-```lua
-require("lualine").setup {
-  options = { theme = "kissa" },
-}
+```vim
+set background=dark
+colorscheme kissa
 ```
+
+Force a variant:
+
+```vim
+colorscheme macchiato    " dark
+colorscheme latte       " light
+```
+
+Lualine is auto-configured when kissa loads.
 
 ## Palette
 

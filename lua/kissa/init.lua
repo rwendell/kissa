@@ -18,7 +18,12 @@ function M.setup(opts)
 
   require("kissa.highlights").setup({ variant = variant })
 
-if opts.variant == "auto" or (not opts.variant and not vim.g.kissa_variant) then
+  local ok, lualine = pcall(require, "lualine")
+  if ok then
+    lualine.setup({ options = { theme = "kissa" } })
+  end
+
+  if opts.variant == "auto" or (not opts.variant and not vim.g.kissa_variant) then
     vim.api.nvim_create_autocmd("OptionSet", {
       group = augroup,
       pattern = "background",
@@ -26,6 +31,10 @@ if opts.variant == "auto" or (not opts.variant and not vim.g.kissa_variant) then
         local new_variant = vim.o.background == "light" and "latte" or "macchiato"
         if new_variant ~= vim.g.kissa_variant then
           require("kissa.highlights").setup({ variant = new_variant })
+          local ok2, lualine2 = pcall(require, "lualine")
+          if ok2 then
+            lualine2.setup({ options = { theme = "kissa" } })
+          end
         end
       end,
     })
