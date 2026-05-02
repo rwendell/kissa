@@ -3,5 +3,21 @@
 *.swo
 *.tmp
 .DS_Store
-node_modules/
 .luacheckcache
+node_modules/
+
+# Neovim
+/doc/tags
+/.DS_Store
+
+# Build artifacts (regenerated from lua/kissa/colors.lua)
+# Extras are tracked in git so users can install without building
+
+# Python
+__pycache__/
+*.pyc
+
+# IDE
+.vscode/
+.idea/
+*.code-workspace
