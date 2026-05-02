@@ -41,12 +41,12 @@
     }
   </style>
   <rect width="1280" height="480" fill="var(--kissa-bg)" />
-  <!-- Furigana above each kanji, well above the tops -->
-  <text x="450" y="145" class="furigana">きっ</text>
-  <text x="680" y="145" class="furigana">さ</text>
-  <!-- Kanji -->
-  <text x="450" y="360" class="kanji">喫</text>
-  <text x="630" y="360" class="kanji">茶</text>
+  <!-- Furigana above each kanji -->
+  <text x="390" y="145" class="furigana">きっ</text>
+  <text x="720" y="145" class="furigana">さ</text>
+  <!-- Kanji with generous spacing -->
+  <text x="370" y="360" class="kanji">喫</text>
+  <text x="680" y="360" class="kanji">茶</text>
   <!-- Pronunciation -->
   <text x="640" y="440" text-anchor="middle" class="pronunciation">kissa</text>
 </svg>
