@@ -1,6 +1,4 @@
-# Kissa 喫茶
-
-![kissa-logo](logo.svg)
+# ![Kissa 喫茶](logo.svg)
 
 /kissa/ · "KEE-sah" · a Japanese coffee house where craft meets calm
 
