@@ -316,36 +316,35 @@ function M.opencode(p)
 end
 
 function M.base16_yaml(p, name, variant_name)
-  local slug = name:lower():gsub(" ", "-")
+  local full_name = "Kissa " .. name
+  local slug = full_name:lower():gsub(" ", "-")
   local lines = {
     "system: \"base16\"",
-    "name: \"" .. name .. "\"",
-    "slug: \"" .. slug .. "\"",
-    "author: \"rwendell\"",
+    "name: \"" .. full_name .. "\"",
+    "author: \"rwendell (https://github.com/rwendell/kissa)\"",
     "variant: \"" .. p.variant .. "\"",
     "palette:",
   }
-  -- base16 mapping: base00-base0F
   local base16_map = {
-    base00 = p.bg,
-    base01 = p.bg_alt,
-    base02 = p.surface0,
-    base03 = p.fg_subtle,
-    base04 = p.fg_muted,
-    base05 = p.fg,
-    base06 = p.fg_dim,
-    base07 = p.variant == "dark" and "#FEF4E4" or "#FEFCFA",
-    base08 = p.red,
-    base09 = p.orange,
-    base0A = p.yellow,
-    base0B = p.green,
-    base0C = p.teal,
-    base0D = p.blue,
-    base0E = p.purple,
-    base0F = p.pink,
+    { "base00", p.bg, "bg" },
+    { "base01", p.bg_alt, "bg_alt" },
+    { "base02", p.surface0, "surface0" },
+    { "base03", p.fg_subtle, "fg_subtle (comments)" },
+    { "base04", p.fg_muted, "fg_muted" },
+    { "base05", p.fg, "fg" },
+    { "base06", p.fg_dim, "fg_dim" },
+    { "base07", p.variant == "dark" and "#FEF4E4" or "#FEFCFA", "bright white" },
+    { "base08", p.red, "red" },
+    { "base09", p.orange, "orange" },
+    { "base0A", p.yellow, "yellow" },
+    { "base0B", p.green, "green" },
+    { "base0C", p.teal, "teal" },
+    { "base0D", p.blue, "blue" },
+    { "base0E", p.purple, "purple" },
+    { "base0F", p.pink, "pink" },
   }
-  for k, v in pairs(base16_map) do
-    table.insert(lines, "  " .. k .. ": \"" .. v .. "\"")
+  for _, item in ipairs(base16_map) do
+    table.insert(lines, "  " .. item[1] .. ": \"" .. item[2] .. "\" # " .. item[3])
   end
   table.insert(lines, "")
   return table.concat(lines, "\n")
@@ -376,7 +375,7 @@ function M.run()
   for _, variant in ipairs(colors.variants) do
     local p = colors.palettes[variant]
     local name = variant == "macchiato" and "Macchiato" or "Latte"
-    write(root .. "/base16/" .. variant .. ".yaml", M.base16_yaml(p, name, variant))
+    write(root .. "/base16/kissa-" .. variant .. ".yaml", M.base16_yaml(p, name, variant))
   end
 
   -- TOML palettes
