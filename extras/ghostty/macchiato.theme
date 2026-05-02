@@ -1,0 +1,31 @@
+# Macchiato - dark theme for Ghostty
+# Place in ~/.config/ghostty/themes/macchiato
+
+palette = 0=#1F1C16
+palette = 1=#E87777
+palette = 2=#8CB870
+palette = 3=#EAC67A
+palette = 4=#7FA8D4
+palette = 5=#B094CC
+palette = 6=#6AB8B0
+palette = 7=#B8A48C
+palette = 8=#5D5B57
+palette = 9=#F09090
+palette = 10=#A8D488
+palette = 11=#F0D48C
+palette = 12=#98BCE6
+palette = 13=#C4ACE0
+palette = 14=#84CCC4
+palette = 15=#FEF4E4
+palette = 16=#DA9050
+palette = 17=#CC88AA
+palette = 18=#35322D
+palette = 19=#47443F
+palette = 20=#D4C4A8
+palette = 21=#FEF4E4
+
+background = #1F1C16
+foreground = #FAF0E6
+cursor-color = #FAF0E6
+selection-background = #FAF0E6
+selection-foreground = #1F1C16

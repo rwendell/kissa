@@ -1,0 +1,29 @@
+# Macchiato - dark theme for Alacritty
+
+[colors.primary]
+background = '0x1F1C16'
+foreground = '0xFAF0E6'
+
+[colors.cursor]
+text = '0x1F1C16'
+cursor = '0xFAF0E6'
+
+[colors.normal]
+black      = '0x1F1C16'
+red        = '0xE87777'
+green      = '0x8CB870'
+yellow     = '0xEAC67A'
+blue       = '0x7FA8D4'
+magenta    = '0xB094CC'
+cyan       = '0x6AB8B0'
+white      = '0xB8A48C'
+
+[colors.bright]
+black      = '0x5D5B57'
+red        = '0xF09090'
+green      = '0xA8D488'
+yellow     = '0xF0D48C'
+blue       = '0x98BCE6'
+magenta    = '0xC4ACE0'
+cyan       = '0x84CCC4'
+white      = '0xFEF4E4'

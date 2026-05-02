@@ -1,0 +1,31 @@
+# Latte - light theme for Ghostty
+# Place in ~/.config/ghostty/themes/latte
+
+palette = 0=#1F1C16
+palette = 1=#9E3E3E
+palette = 2=#387050
+palette = 3=#7D6820
+palette = 4=#3468A8
+palette = 5=#6438A0
+palette = 6=#287070
+palette = 7=#746C62
+palette = 8=#6E6459
+palette = 9=#B85555
+palette = 10=#509058
+palette = 11=#968232
+palette = 12=#4C80BE
+palette = 13=#7E52BA
+palette = 14=#388888
+palette = 15=#FEFCFA
+palette = 16=#8F5D22
+palette = 17=#943A68
+palette = 18=#E8E7E3
+palette = 19=#D5D2CB
+palette = 20=#746C62
+palette = 21=#FEFCFA
+
+background = #F5F4F0
+foreground = #1F1C16
+cursor-color = #1F1C16
+selection-background = #D5D2CB
+selection-foreground = #1F1C16

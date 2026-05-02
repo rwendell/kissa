@@ -1,0 +1,24 @@
+! Macchiato - dark theme
+! Paste into https://terminal.sexy to preview
+
+*.foreground: #FAF0E6
+*.background: #1F1C16
+*.cursorColor: #EAC67A
+*.colorBD: #FAF0E6
+
+*.color0:  #1F1C16
+*.color1:  #E87777
+*.color2:  #8CB870
+*.color3:  #EAC67A
+*.color4:  #7FA8D4
+*.color5:  #B094CC
+*.color6:  #6AB8B0
+*.color7:  #B8A48C
+*.color8:  #5D5B57
+*.color9:  #F09090
+*.color10:  #A8D488
+*.color11:  #F0D48C
+*.color12:  #98BCE6
+*.color13:  #C4ACE0
+*.color14:  #84CCC4
+*.color15:  #FEF4E4

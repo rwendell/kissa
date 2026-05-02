@@ -1,0 +1,38 @@
+# Latte - light theme for WezTerm
+
+[colors]
+background = "#F5F4F0"
+foreground = "#1F1C16"
+
+cursor_bg = "#1F1C16"
+cursor_border = "#1F1C16"
+cursor_fg = "#F5F4F0"
+
+selection_bg = "#D5D2CB"
+selection_fg = "#1F1C16"
+
+ansi = [
+  "#1F1C16",
+  "#9E3E3E",
+  "#387050",
+  "#7D6820",
+  "#3468A8",
+  "#6438A0",
+  "#287070",
+  "#746C62",
+]
+
+brights = [
+  "#6E6459",
+  "#B85555",
+  "#509058",
+  "#968232",
+  "#4C80BE",
+  "#7E52BA",
+  "#388888",
+  "#FEFCFA",
+]
+
+[colors.indexed]
+16 = "#8F5D22"
+17 = "#943A68"

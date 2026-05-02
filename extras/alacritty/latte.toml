@@ -1,0 +1,29 @@
+# Latte - light theme for Alacritty
+
+[colors.primary]
+background = '0xF5F4F0'
+foreground = '0x1F1C16'
+
+[colors.cursor]
+text = '0xF5F4F0'
+cursor = '0x1F1C16'
+
+[colors.normal]
+black      = '0x1F1C16'
+red        = '0x9E3E3E'
+green      = '0x387050'
+yellow     = '0x7D6820'
+blue       = '0x3468A8'
+magenta    = '0x6438A0'
+cyan       = '0x287070'
+white      = '0x746C62'
+
+[colors.bright]
+black      = '0x6E6459'
+red        = '0xB85555'
+green      = '0x509058'
+yellow     = '0x968232'
+blue       = '0x4C80BE'
+magenta    = '0x7E52BA'
+cyan       = '0x388888'
+white      = '0xFEFCFA'

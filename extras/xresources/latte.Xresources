@@ -1,0 +1,24 @@
+! Latte - light theme
+! Paste into https://terminal.sexy to preview
+
+*.foreground: #1F1C16
+*.background: #F5F4F0
+*.cursorColor: #3468A8
+*.colorBD: #1F1C16
+
+*.color0:  #1F1C16
+*.color1:  #9E3E3E
+*.color2:  #387050
+*.color3:  #7D6820
+*.color4:  #3468A8
+*.color5:  #6438A0
+*.color6:  #287070
+*.color7:  #746C62
+*.color8:  #6E6459
+*.color9:  #B85555
+*.color10:  #509058
+*.color11:  #968232
+*.color12:  #4C80BE
+*.color13:  #7E52BA
+*.color14:  #388888
+*.color15:  #FEFCFA

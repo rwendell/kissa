@@ -1,0 +1,38 @@
+# Macchiato - dark theme for WezTerm
+
+[colors]
+background = "#1F1C16"
+foreground = "#FAF0E6"
+
+cursor_bg = "#FAF0E6"
+cursor_border = "#FAF0E6"
+cursor_fg = "#1F1C16"
+
+selection_bg = "#FAF0E6"
+selection_fg = "#1F1C16"
+
+ansi = [
+  "#1F1C16",
+  "#E87777",
+  "#8CB870",
+  "#EAC67A",
+  "#7FA8D4",
+  "#B094CC",
+  "#6AB8B0",
+  "#B8A48C",
+]
+
+brights = [
+  "#5D5B57",
+  "#F09090",
+  "#A8D488",
+  "#F0D48C",
+  "#98BCE6",
+  "#C4ACE0",
+  "#84CCC4",
+  "#FEF4E4",
+]
+
+[colors.indexed]
+16 = "#DA9050"
+17 = "#CC88AA"
