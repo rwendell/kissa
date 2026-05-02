@@ -79,7 +79,7 @@ theme = dark:macchiato,light:latte
 | XResources | [`extras/xresources/`](extras/xresources/) |
 | OpenCode | [`extras/opencode/`](extras/opencode/) |
 | Base16 | [`base16/`](base16/) |
-| Palette TOML | [`colors/`](colors/) |
+| Palette TOML | [`extras/palette/`](extras/palette/) |
 
 
 ## Etymology

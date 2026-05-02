@@ -406,7 +406,7 @@ function M.run()
       end
       table.insert(lines, "")
     end
-    write(root .. "/colors/" .. variant .. ".toml", table.concat(lines, "\n"))
+    write(extras .. "/palette/" .. variant .. ".toml", table.concat(lines, "\n"))
   end
 
   print("Done! All extras generated.")
