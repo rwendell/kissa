@@ -241,87 +241,78 @@ function M.xresources(p, name)
   return table.concat(lines, "\n")
 end
 
-function M.opencode(p, name)
-  local j = string.format([[{
-  "name": "%s",
-  "Defs": {},
-  "dark": {
-    "primary": "%s",
-    "secondary": "%s",
-    "accent": "%s",
-    "background": "%s",
-    "backgroundPanel": "%s",
-    "backgroundElement": "%s",
-    "text": "%s",
-    "textMuted": "%s",
-    "border": "%s",
-    "borderActive": "%s",
-    "borderSubtle": "%s",
-    "error": "%s",
-    "warning": "%s",
-    "success": "%s",
-    "info": "%s",
-    "syntaxKeyword": "%s",
-    "syntaxString": "%s",
-    "syntaxComment": "%s",
-    "syntaxNumber": "%s",
-    "syntaxFunction": "%s",
-    "syntaxVariable": "%s",
-    "syntaxType": "%s",
-    "syntaxOperator": "%s",
-    "syntaxConstant": "%s",
-    "syntaxPunctuation": "%s"
-  },
-  "light": {
-    "primary": "%s",
-    "secondary": "%s",
-    "accent": "%s",
-    "background": "%s",
-    "backgroundPanel": "%s",
-    "backgroundElement": "%s",
-    "text": "%s",
-    "textMuted": "%s",
-    "border": "%s",
-    "borderActive": "%s",
-    "borderSubtle": "%s",
-    "error": "%s",
-    "warning": "%s",
-    "success": "%s",
-    "info": "%s",
-    "syntaxKeyword": "%s",
-    "syntaxString": "%s",
-    "syntaxComment": "%s",
-    "syntaxNumber": "%s",
-    "syntaxFunction": "%s",
-    "syntaxVariable": "%s",
-    "syntaxType": "%s",
-    "syntaxOperator": "%s",
-    "syntaxConstant": "%s",
-    "syntaxPunctuation": "%s"
+function M.opencode(p)
+  local d = p.macchiato
+  local l = p.latte
+  local tokens = {
+    primary            = { d.blue,         l.blue },
+    secondary          = { d.fg_muted,     l.fg_muted },
+    accent             = { d.yellow,       l.blue },
+    error              = { d.red,          l.red },
+    warning            = { d.yellow,       l.yellow },
+    success            = { d.green,        l.green },
+    info               = { d.blue,         l.blue },
+    text               = { d.fg,           l.fg },
+    textMuted          = { d.fg_subtle,    l.fg_subtle },
+    background         = { d.bg,           l.bg },
+    backgroundPanel    = { d.bg_alt,       l.bg_alt },
+    backgroundElement  = { d.surface0,     l.surface0 },
+    border             = { d.surface1,     l.surface1 },
+    borderActive       = { d.blue,         l.blue },
+    borderSubtle       = { d.surface0,     l.surface0 },
+    diffAdded          = { d.green,        l.green },
+    diffRemoved        = { d.red,          l.red },
+    diffContext        = { d.bg_alt,       l.bg_alt },
+    diffHunkHeader     = { d.bg_alt,       l.bg_alt },
+    diffHighlightAdded    = { "#2D3A28",   "#B8D4A8" },
+    diffHighlightRemoved = { "#3A2222",   "#D4A8A8" },
+    diffAddedBg          = { "#2D3A28",   "#D8ECD0" },
+    diffRemovedBg        = { "#3A2222",   "#ECD0D0" },
+    diffContextBg         = { d.bg_alt,     l.bg_alt },
+    diffLineNumber       = { d.fg_subtle,  l.fg_muted },
+    diffAddedLineNumberBg    = { "#2D3A28",   "#C8E0B8" },
+    diffRemovedLineNumberBg = { "#3A2222",   "#E0B8B8" },
+    markdownText         = { d.fg,           l.fg },
+    markdownHeading      = { d.blue,         l.blue },
+    markdownLink         = { d.teal,         l.teal },
+    markdownLinkText     = { d.yellow,       l.yellow },
+    markdownCode         = { d.green,        l.green },
+    markdownBlockQuote   = { d.fg_subtle,    l.fg_subtle },
+    markdownEmph         = { d.purple,       l.purple },
+    markdownStrong        = { d.fg_dim,       l.fg_dim },
+    markdownHorizontalRule = { d.surface1,    l.surface1 },
+    markdownListItem     = { d.fg,           l.fg },
+    markdownListEnumeration = { d.fg_subtle, l.fg_muted },
+    markdownImage        = { d.teal,         l.teal },
+    markdownImageText    = { d.teal,         l.teal },
+    markdownCodeBlock    = { d.green,        l.green },
+    syntaxComment       = { d.fg_subtle,    l.fg_subtle },
+    syntaxKeyword       = { d.blue,         l.blue },
+    syntaxFunction       = { d.blue,         l.blue },
+    syntaxVariable      = { d.fg_dim,       l.fg_dim },
+    syntaxString        = { d.green,        l.green },
+    syntaxNumber        = { d.orange,        l.orange },
+    syntaxType          = { d.teal,          l.teal },
+    syntaxOperator      = { d.orange,        l.orange },
+    syntaxPunctuation   = { d.fg_dim,       l.fg_dim },
+    syntaxConstant      = { d.purple,        l.purple },
   }
-}]],
-    -- name
-    name,
-    -- dark
-    p.macchiato.blue, p.macchiato.fg_muted, p.macchiato.yellow,
-    p.macchiato.bg, p.macchiato.bg_alt, p.macchiato.surface0,
-    p.macchiato.fg, p.macchiato.fg_subtle,
-    p.macchiato.surface1, p.macchiato.blue, p.macchiato.surface0,
-    p.macchiato.red, p.macchiato.yellow, p.macchiato.green, p.macchiato.blue,
-    p.macchiato.blue, p.macchiato.green, p.macchiato.fg_subtle,
-    p.macchiato.orange, p.macchiato.blue, p.macchiato.fg_dim,
-    p.macchiato.teal, p.macchiato.orange, p.macchiato.purple, p.macchiato.fg_dim,
-    -- light
-    p.latte.blue, p.latte.fg_muted, p.latte.blue,
-    p.latte.bg, p.latte.bg_alt, p.latte.surface0,
-    p.latte.fg, p.latte.fg_subtle,
-    p.latte.surface1, p.latte.blue, p.latte.surface0,
-    p.latte.red, p.latte.yellow, p.latte.green, p.latte.blue,
-    p.latte.blue, p.latte.green, p.latte.fg_subtle,
-    p.latte.orange, p.latte.blue, p.latte.fg_dim,
-    p.latte.teal, p.latte.orange, p.latte.purple, p.latte.fg_dim
-  )
-  return j
+  local lines = {
+    '{',
+    '  "$schema": "https://opencode.ai/theme.json",',
+    '  "theme": {',
+  }
+  local keys = {}
+  for k in pairs(tokens) do table.insert(keys, k) end
+  table.sort(keys)
+  for i, k in ipairs(keys) do
+    local v = tokens[k]
+    local comma = i < #keys and "," or ""
+    table.insert(lines, string.format('    "%s": { "dark": "%s", "light": "%s" }%s', k, v[1], v[2], comma))
+  end
+  table.insert(lines, '  }')
+  table.insert(lines, '}')
+  return table.concat(lines, "\n")
 end
 
 function M.base16_yaml(p, name, variant_name)
