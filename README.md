@@ -1,6 +1,8 @@
 # ![Kissa 喫茶](logo.svg)　喫茶　· /kissa/ · "KEE-sah"
 WCAG AA+ accessible color schemes rooted in espresso.
 
+![Macchiato](assets/macchiato.png) ![Latte](assets/latte.png)
+
 ## Quick Start
 
 ### Neovim
