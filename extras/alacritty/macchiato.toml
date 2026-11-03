@@ -19,7 +19,7 @@ cyan       = '0x6AB8B0'
 white      = '0xB8A48C'
 
 [colors.bright]
-black      = '0x5D5B57'
+black      = '0x6D6B68'
 red        = '0xF09090'
 green      = '0xA8D488'
 yellow     = '0xF0D48C'

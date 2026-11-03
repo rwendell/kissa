@@ -42,7 +42,14 @@ function M.ghostty(p, name)
   table.insert(lines, string.format("palette = %d=%s", 18, p.bg_alt))
   table.insert(lines, string.format("palette = %d=%s", 19, p.surface0))
   table.insert(lines, string.format("palette = %d=%s", 20, p.fg_muted))
-  table.insert(lines, string.format("palette = %d=%s", 21, p.variant == "dark" and "#FEF4E4" or "#FEFCFA"))
+  table.insert(lines, string.format("palette = %d=%s", 21, p.fg_dim))
+  if p.terminal_256 then
+    table.insert(lines, "")
+    table.insert(lines, "# Warm replacements for the xterm 256-color grays.")
+    for _, entry in ipairs(p.terminal_256) do
+      table.insert(lines, string.format("palette = %d=%s", entry[1], entry[2]))
+    end
+  end
   table.insert(lines, "")
   table.insert(lines, "background = " .. p.bg)
   table.insert(lines, "foreground = " .. p.fg)
@@ -90,6 +97,12 @@ function M.kitty(p, name)
   table.insert(lines, "")
   table.insert(lines, string.format("color16 %s", p.orange))
   table.insert(lines, string.format("color17 %s", p.pink))
+  if p.terminal_256 then
+    table.insert(lines, "")
+    for _, entry in ipairs(p.terminal_256) do
+      table.insert(lines, string.format("color%d %s", entry[1], entry[2]))
+    end
+  end
   return table.concat(lines, "\n")
 end
 
@@ -118,6 +131,13 @@ function M.alacritty(p, name)
   local bright_names = { "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white" }
   for i, key in ipairs(bright_order) do
     table.insert(lines, string.format("%-10s = '0x%s'", bright_names[i], p.ansi[key]:gsub("#","")))
+  end
+  if p.terminal_256 then
+    table.insert(lines, "")
+    table.insert(lines, "[colors.indexed]")
+    for _, entry in ipairs(p.terminal_256) do
+      table.insert(lines, string.format("%d = '0x%s'", entry[1], entry[2]:gsub("#","")))
+    end
   end
   return table.concat(lines, "\n")
 end
@@ -155,6 +175,11 @@ function M.wezterm(p, name)
   table.insert(lines, "[colors.indexed]")
   table.insert(lines, "16 = \"" .. p.orange .. "\"")
   table.insert(lines, "17 = \"" .. p.pink .. "\"")
+  if p.terminal_256 then
+    for _, entry in ipairs(p.terminal_256) do
+      table.insert(lines, string.format("%d = \"%s\"", entry[1], entry[2]))
+    end
+  end
   return table.concat(lines, "\n")
 end
 
@@ -237,6 +262,11 @@ function M.xresources(p, name)
   end
   for i, key in ipairs(bright_order) do
     table.insert(lines, string.format("*.color%d:  %s", i + 7, p.ansi[key]))
+  end
+  if p.terminal_256 then
+    for _, entry in ipairs(p.terminal_256) do
+      table.insert(lines, string.format("*.color%d:  %s", entry[1], entry[2]))
+    end
   end
   return table.concat(lines, "\n")
 end
@@ -333,7 +363,7 @@ function M.base16_yaml(p, name, variant_name)
     { "base04", p.fg_muted, "fg_muted" },
     { "base05", p.fg, "fg" },
     { "base06", p.fg_dim, "fg_dim" },
-    { "base07", p.variant == "dark" and "#FEF4E4" or "#FEFCFA", "bright white" },
+    { "base07", p.ansi.white_bright, p.variant == "light" and "bright white (dark on light for ANSI 15)" or "bright white" },
     { "base08", p.red, "red" },
     { "base09", p.orange, "orange" },
     { "base0A", p.yellow, "yellow" },
@@ -402,6 +432,13 @@ function M.run()
         else
           table.insert(lines, k .. " = \"" .. p[k] .. "\"")
         end
+      end
+      table.insert(lines, "")
+    end
+    if p.terminal_256 then
+      table.insert(lines, "[terminal.256]")
+      for _, entry in ipairs(p.terminal_256) do
+        table.insert(lines, string.format("%d = \"%s\"", entry[1], entry[2]))
       end
       table.insert(lines, "")
     end

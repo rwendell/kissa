@@ -109,6 +109,39 @@ def verify_palette(palette_path: str):
             all_checks.append((key, hex_val, ratio, level, f"fg on surface", ratio >= 4.5))
             print(f"  {key:<20} {hex_val:<10} {ratio:>8.2f}:1 {level:<8}{marker}")
 
+    if "terminal" in data:
+        print(f"\n  ── Terminal ANSI colors on {bg} ──")
+        print(f"  {'Color':<20} {'Hex':<10} {'Ratio':>8} {'Level':<8}")
+        print(f"  {'─'*20} {'─'*10} {'─'*8} {'─'*8}")
+        for key, hex_val in data["terminal"].items():
+            if isinstance(hex_val, dict):
+                continue
+            ratio = contrast_ratio(hex_val, bg)
+            level = wcag_level(ratio)
+            # ANSI black is the background on a dark terminal; it isn't text.
+            if key == "black" and variant == "dark":
+                print(f"  {key:<20} {hex_val:<10} {ratio:>8.2f}:1 {'—':<8} (background)")
+                continue
+            # ANSI 8 is the dim/comment role; use the relaxed 3:1 target.
+            threshold = 3.0 if key == "black_bright" else 4.5
+            passes = ratio >= threshold
+            marker = " ✗" if not passes else ""
+            all_checks.append((f"terminal.{key}", hex_val, ratio, level, f"on bg (needs {threshold}:1)", passes))
+            print(f"  {key:<20} {hex_val:<10} {ratio:>8.2f}:1 {level:<8}{marker}")
+
+        overrides = data["terminal"].get("256")
+        if overrides:
+            print(f"\n  ── Terminal 256-color overrides on {bg} ──")
+            print(f"  {'Index':<20} {'Hex':<10} {'Ratio':>8} {'Level':<8}")
+            print(f"  {'─'*20} {'─'*10} {'─'*8} {'─'*8}")
+            for key, hex_val in overrides.items():
+                ratio = contrast_ratio(hex_val, bg)
+                level = wcag_level(ratio)
+                passes = ratio >= 4.5
+                marker = " ✗" if not passes else ""
+                all_checks.append((f"terminal.256.{key}", hex_val, ratio, level, "on bg (needs 4.5:1)", passes))
+                print(f"  {key:<20} {hex_val:<10} {ratio:>8.2f}:1 {level:<8}{marker}")
+
     if "syntax" in data:
         print(f"\n  ── Syntax colors on {bg} ──")
         print(f"  {'Color':<20} {'Hex':<10} {'Ratio':>8} {'Level':<8}")

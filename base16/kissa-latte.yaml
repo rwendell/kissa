@@ -10,7 +10,7 @@ palette:
   base04: "#746C62" # fg_muted
   base05: "#1F1C16" # fg
   base06: "#6E6459" # fg_dim
-  base07: "#FEFCFA" # bright white
+  base07: "#1F1C16" # bright white (dark on light for ANSI 15)
   base08: "#9E3E3E" # red
   base09: "#8F5D22" # orange
   base0A: "#7D6820" # yellow

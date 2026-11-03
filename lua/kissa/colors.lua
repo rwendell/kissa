@@ -42,7 +42,7 @@ M.palettes = {
       magenta = "#B094CC",
       cyan    = "#6AB8B0",
       white   = "#B8A48C",
-      black_bright   = "#5D5B57",
+      black_bright   = "#6D6B68",
       red_bright      = "#F09090",
       green_bright    = "#A8D488",
       yellow_bright   = "#F0D48C",
@@ -72,13 +72,14 @@ M.palettes = {
     blue     = "#3468A8",
     purple   = "#6438A0",
     pink     = "#943A68",
-    -- bright variants
-    red_bright    = "#B85555",
-    green_bright  = "#509058",
-    yellow_bright = "#968232",
-    blue_bright   = "#4C80BE",
-    purple_bright = "#7E52BA",
-    teal_bright   = "#388888",
+    -- bright variants (darker than the normals: on a light background,
+    -- "bright" means more contrast, not more lightness)
+    red_bright    = "#8A3030",
+    green_bright  = "#2E5E42",
+    yellow_bright = "#6A5715",
+    blue_bright   = "#29578E",
+    purple_bright = "#552F8A",
+    teal_bright   = "#1F5E5E",
     -- terminal ANSI mapping
     ansi = {
       black   = "#1F1C16",
@@ -90,13 +91,24 @@ M.palettes = {
       cyan    = "#287070",
       white   = "#746C62",
       black_bright   = "#6E6459",
-      red_bright      = "#B85555",
-      green_bright    = "#509058",
-      yellow_bright   = "#968232",
-      blue_bright     = "#4C80BE",
-      magenta_bright  = "#7E52BA",
-      cyan_bright     = "#388888",
-      white_bright    = "#FEFCFA",
+      red_bright      = "#8A3030",
+      green_bright    = "#2E5E42",
+      yellow_bright   = "#6A5715",
+      blue_bright     = "#29578E",
+      magenta_bright  = "#552F8A",
+      cyan_bright     = "#1F5E5E",
+      white_bright    = "#1F1C16",
+    },
+    -- High end of xterm's 256-color grayscale ramp. The stock values are
+    -- neutral and tuned for dark backgrounds; use warm browns so TUI text
+    -- stays on-palette and readable on the light background.
+    terminal_256 = {
+      { 250, "#6E6459" },
+      { 251, "#5C5044" },
+      { 252, "#3A2F24" },
+      { 253, "#332B21" },
+      { 254, "#2A241C" },
+      { 255, "#1F1C16" },
     },
   },
 }
