@@ -58,6 +58,7 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 | XResources | [`extras/xresources/`](extras/xresources/) |
 | OpenCode | [`extras/opencode/`](extras/opencode/) |
 | Base16 | [`base16/`](base16/) |
+| Base24 | [`base24/`](base24/) |
 | Palette TOML | [`palette/`](palette/) |
 
 

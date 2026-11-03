@@ -380,6 +380,48 @@ function M.base16_yaml(p, name, variant_name)
   return table.concat(lines, "\n")
 end
 
+function M.base24_yaml(p, name)
+  local full_name = "Kissa " .. name
+  local lines = {
+    "system: \"base24\"",
+    "name: \"" .. full_name .. "\"",
+    "author: \"rwendell (https://github.com/rwendell/kissa)\"",
+    "variant: \"" .. p.variant .. "\"",
+    "palette:",
+  }
+  local base24_map = {
+    { "base00", p.bg, "bg" },
+    { "base01", p.bg_alt, "bg_alt" },
+    { "base02", p.surface0, "surface0" },
+    { "base03", p.ansi.black_bright, "bright black (ANSI 8)" },
+    { "base04", p.fg_muted, "fg_muted" },
+    { "base05", p.fg, "fg" },
+    { "base06", p.fg_dim, "fg_dim" },
+    { "base07", p.ansi.white_bright, "bright white (ANSI 15)" },
+    { "base08", p.red, "red" },
+    { "base09", p.orange, "orange (ANSI 16)" },
+    { "base0A", p.yellow, "yellow" },
+    { "base0B", p.green, "green" },
+    { "base0C", p.teal, "teal" },
+    { "base0D", p.blue, "blue" },
+    { "base0E", p.purple, "purple" },
+    { "base0F", p.pink, "pink (ANSI 17)" },
+    { "base10", p.bg10, p.variant == "dark" and "darker background" or "lighter background" },
+    { "base11", p.bg11, p.variant == "dark" and "darkest background" or "lightest background" },
+    { "base12", p.ansi.red_bright, "bright red (ANSI 9)" },
+    { "base13", p.ansi.yellow_bright, "bright yellow (ANSI 11)" },
+    { "base14", p.ansi.green_bright, "bright green (ANSI 10)" },
+    { "base15", p.ansi.cyan_bright, "bright cyan (ANSI 14)" },
+    { "base16", p.ansi.blue_bright, "bright blue (ANSI 12)" },
+    { "base17", p.ansi.magenta_bright, "bright magenta (ANSI 13)" },
+  }
+  for _, item in ipairs(base24_map) do
+    table.insert(lines, "  " .. item[1] .. ": \"" .. item[2] .. "\" # " .. item[3])
+  end
+  table.insert(lines, "")
+  return table.concat(lines, "\n")
+end
+
 function M.run()
   local root = vim.fn.getcwd()
   local extras = root .. "/extras"
@@ -408,6 +450,13 @@ function M.run()
     write(root .. "/base16/kissa-" .. variant .. ".yaml", M.base16_yaml(p, name, variant))
   end
 
+  -- Base24 YAML files
+  for _, variant in ipairs(colors.variants) do
+    local p = colors.palettes[variant]
+    local name = variant == "macchiato" and "Macchiato" or "Latte"
+    write(root .. "/base24/kissa-" .. variant .. ".yaml", M.base24_yaml(p, name))
+  end
+
   -- TOML palettes
   for _, variant in ipairs(colors.variants) do
     local p = colors.palettes[variant]
@@ -417,21 +466,15 @@ function M.run()
       "",
     }
     local sections = {
-      colors = { "bg", "bg_alt", "surface0", "surface1", "surface2", "fg", "fg_dim", "fg_muted", "fg_subtle", "red", "orange", "yellow", "green", "teal", "blue", "purple", "pink" },
-      ansi = { "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white", "black_bright", "red_bright", "green_bright", "yellow_bright", "blue_bright", "magenta_bright", "cyan_bright", "white_bright" },
+      { "colors", { "bg", "bg_alt", "surface0", "surface1", "surface2", "fg", "fg_dim", "fg_muted", "fg_subtle", "red", "orange", "yellow", "green", "teal", "blue", "purple", "pink" } },
+      { "terminal", { "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white", "black_bright", "red_bright", "green_bright", "yellow_bright", "blue_bright", "magenta_bright", "cyan_bright", "white_bright" } },
     }
-    for sec, keys in pairs(sections) do
-      if sec == "ansi" then
-        table.insert(lines, "[terminal]")
-      else
-        table.insert(lines, "[" .. sec .. "]")
-      end
+    for _, section in ipairs(sections) do
+      local section_name, keys = section[1], section[2]
+      table.insert(lines, "[" .. section_name .. "]")
       for _, k in ipairs(keys) do
-        if sec == "ansi" then
-          table.insert(lines, k .. " = \"" .. p.ansi[k] .. "\"")
-        else
-          table.insert(lines, k .. " = \"" .. p[k] .. "\"")
-        end
+        local value = section_name == "terminal" and p.ansi[k] or p[k]
+        table.insert(lines, k .. " = \"" .. value .. "\"")
       end
       table.insert(lines, "")
     end

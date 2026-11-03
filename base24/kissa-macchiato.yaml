@@ -1,0 +1,29 @@
+system: "base24"
+name: "Kissa Macchiato"
+author: "rwendell (https://github.com/rwendell/kissa)"
+variant: "dark"
+palette:
+  base00: "#1F1C16" # bg
+  base01: "#35322D" # bg_alt
+  base02: "#47443F" # surface0
+  base03: "#6D6B68" # bright black (ANSI 8)
+  base04: "#D4C4A8" # fg_muted
+  base05: "#FAF0E6" # fg
+  base06: "#E8D5B7" # fg_dim
+  base07: "#FEF4E4" # bright white (ANSI 15)
+  base08: "#E87777" # red
+  base09: "#DA9050" # orange (ANSI 16)
+  base0A: "#EAC67A" # yellow
+  base0B: "#8CB870" # green
+  base0C: "#6AB8B0" # teal
+  base0D: "#7FA8D4" # blue
+  base0E: "#B094CC" # purple
+  base0F: "#CC88AA" # pink (ANSI 17)
+  base10: "#17140F" # darker background
+  base11: "#100E0A" # darkest background
+  base12: "#F09090" # bright red (ANSI 9)
+  base13: "#F0D48C" # bright yellow (ANSI 11)
+  base14: "#A8D488" # bright green (ANSI 10)
+  base15: "#84CCC4" # bright cyan (ANSI 14)
+  base16: "#98BCE6" # bright blue (ANSI 12)
+  base17: "#C4ACE0" # bright magenta (ANSI 13)

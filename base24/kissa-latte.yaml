@@ -1,0 +1,29 @@
+system: "base24"
+name: "Kissa Latte"
+author: "rwendell (https://github.com/rwendell/kissa)"
+variant: "light"
+palette:
+  base00: "#F5F4F0" # bg
+  base01: "#E8E7E3" # bg_alt
+  base02: "#D5D2CB" # surface0
+  base03: "#6E6459" # bright black (ANSI 8)
+  base04: "#746C62" # fg_muted
+  base05: "#1F1C16" # fg
+  base06: "#6E6459" # fg_dim
+  base07: "#1F1C16" # bright white (ANSI 15)
+  base08: "#9E3E3E" # red
+  base09: "#8F5D22" # orange (ANSI 16)
+  base0A: "#7D6820" # yellow
+  base0B: "#387050" # green
+  base0C: "#287070" # teal
+  base0D: "#3468A8" # blue
+  base0E: "#6438A0" # purple
+  base0F: "#943A68" # pink (ANSI 17)
+  base10: "#FAF9F6" # lighter background
+  base11: "#FEFCFA" # lightest background
+  base12: "#8A3030" # bright red (ANSI 9)
+  base13: "#6A5715" # bright yellow (ANSI 11)
+  base14: "#2E5E42" # bright green (ANSI 10)
+  base15: "#1F5E5E" # bright cyan (ANSI 14)
+  base16: "#29578E" # bright blue (ANSI 12)
+  base17: "#552F8A" # bright magenta (ANSI 13)

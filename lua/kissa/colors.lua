@@ -13,6 +13,9 @@ M.palettes = {
     surface0 = "#47443F",
     surface1 = "#5D5B57",
     surface2 = "#6D6B68",
+    -- Base24 background variants (progressive darker surfaces)
+    bg10     = "#17140F",
+    bg11     = "#100E0A",
     fg       = "#FAF0E6",
     fg_dim   = "#E8D5B7",
     fg_muted = "#D4C4A8",
@@ -60,6 +63,9 @@ M.palettes = {
     surface0 = "#D5D2CB",
     surface1 = "#C5C0B8",
     surface2 = "#B5AFA6",
+    -- Base24 background variants (progressive lighter surfaces)
+    bg10     = "#FAF9F6",
+    bg11     = "#FEFCFA",
     fg       = "#1F1C16",
     fg_dim   = "#6E6459",
     fg_muted = "#746C62",
