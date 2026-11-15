@@ -283,7 +283,11 @@ function M.opencode(p)
     success            = { d.green,        l.green },
     info               = { d.blue,         l.blue },
     text               = { d.fg,           l.fg },
-    textMuted          = { d.fg_subtle,    l.fg_subtle },
+    -- Latte's fg_subtle (#91887D) is only 3.17:1 on the light background
+    -- and is perceptually almost identical to Macchiato's fg_subtle, so
+    -- muted UI text (including OpenCode's reasoning text) reads the same in
+    -- both modes. Use fg_muted for Latte; it reaches 4.70:1.
+    textMuted          = { d.fg_subtle,    l.fg_muted },
     background         = { d.bg,           l.bg },
     backgroundPanel    = { d.bg_alt,       l.bg_alt },
     backgroundElement  = { d.surface0,     l.surface0 },
@@ -292,10 +296,12 @@ function M.opencode(p)
     borderSubtle       = { d.surface0,     l.surface0 },
     diffAdded          = { d.green,        l.green },
     diffRemoved        = { d.red,          l.red },
-    diffContext        = { d.bg_alt,       l.bg_alt },
-    diffHunkHeader     = { d.bg_alt,       l.bg_alt },
-    diffHighlightAdded    = { "#2D3A28",   "#B8D4A8" },
-    diffHighlightRemoved = { "#3A2222",   "#D4A8A8" },
+    -- These are text colors, not backgrounds: diffContext is used for
+    -- context text and diffHighlight* for the +/- signs in the diff view.
+    diffContext        = { d.fg_subtle,    l.fg_muted },
+    diffHunkHeader     = { d.blue,         l.blue },
+    diffHighlightAdded    = { d.green,     l.green },
+    diffHighlightRemoved = { d.red,       l.red },
     diffAddedBg          = { "#2D3A28",   "#D8ECD0" },
     diffRemovedBg        = { "#3A2222",   "#ECD0D0" },
     diffContextBg         = { d.bg_alt,     l.bg_alt },
@@ -307,7 +313,7 @@ function M.opencode(p)
     markdownLink         = { d.teal,         l.teal },
     markdownLinkText     = { d.yellow,       l.yellow },
     markdownCode         = { d.green,        l.green },
-    markdownBlockQuote   = { d.fg_subtle,    l.fg_subtle },
+    markdownBlockQuote   = { d.fg_subtle,    l.fg_muted },
     markdownEmph         = { d.purple,       l.purple },
     markdownStrong        = { d.fg_dim,       l.fg_dim },
     markdownHorizontalRule = { d.surface1,    l.surface1 },
