@@ -271,84 +271,328 @@ function M.xresources(p, name)
   return table.concat(lines, "\n")
 end
 
+-- ── OpenCode v2 theme ────────────────────────────────────────────────────────
+-- OpenCode 2 reads themes from {"base": …, "light": …, "dark": …}. Each mode
+-- carries a nine-step hue scale plus optional token overrides on top of base.
+-- The canonical palette color sits at step 400, which is where the semantic
+-- layer and the built-in themes expect the main accent.
+
+local function clamp(v, lo, hi)
+  if v < lo then return lo elseif v > hi then return hi else return v end
+end
+
+local function to_linear(c)
+  return c <= 0.04045 and c / 12.92 or ((c + 0.055) / 1.055) ^ 2.4
+end
+
+local function from_linear(c)
+  return c <= 0.0031308 and c * 12.92 or 1.055 * c ^ 0.4166666666666667 - 0.055
+end
+
+local function hex_to_oklch(hex)
+  hex = hex:gsub("^#", "")
+  local r, g, b = tonumber(hex:sub(1,2), 16), tonumber(hex:sub(3,4), 16), tonumber(hex:sub(5,6), 16)
+  r, g, b = to_linear(r/255), to_linear(g/255), to_linear(b/255)
+  local l = 0.4122214708*r + 0.5363325363*g + 0.0514459929*b
+  local m = 0.2119034982*r + 0.6806995451*g + 0.1073969566*b
+  local s = 0.0883024619*r + 0.2817188376*g + 0.6299787005*b
+  l, m, s = l^(1/3), m^(1/3), s^(1/3)
+  local L = 0.2104542553*l + 0.7936177850*m - 0.0040720468*s
+  local A = 1.9779984951*l - 2.4285922050*m + 0.4505937099*s
+  local B = 0.0259040371*l + 0.7827717662*m - 0.8086757660*s
+  return L, math.sqrt(A*A + B*B), math.atan2(B, A)
+end
+
+local function oklch_to_hex(L, C, H)
+  local a, b = C * math.cos(H), C * math.sin(H)
+  local l = (L + 0.3963377774*a + 0.2158037573*b) ^ 3
+  local m = (L - 0.1055613458*a - 0.0638541728*b) ^ 3
+  local s = (L - 0.0894841775*a - 1.2914855480*b) ^ 3
+  local r =  4.0767416621*l - 3.3077115913*m + 0.2309699292*s
+  local g = -1.2684380046*l + 2.6097574011*m - 0.3413193965*s
+  local bb = -0.0041960863*l - 0.7034186147*m + 1.7076147010*s
+  local function to_hex(c)
+    return string.format("%02X", math.floor(clamp(from_linear(clamp(c, 0, 1)), 0, 1) * 255 + 0.5))
+  end
+  return "#" .. to_hex(r) .. to_hex(g) .. to_hex(bb)
+end
+
+-- Nine-step scale for one hue. Steps away from 400 move toward the mode's
+-- text or background lightness while losing chroma, so the ramp keeps the
+-- palette's hue angle instead of crossing into neighbouring hues.
+local function hue_ramp(hex, variant)
+  local L, C, H = hex_to_oklch(hex)
+  local dark = variant == "dark"
+  local steps = {}
+  for _, step in ipairs({ 100, 200, 300, 400, 500, 600, 700, 800, 900 }) do
+    if step == 400 then
+      steps[step] = hex
+    else
+      local t = math.abs(step - 400) / 500
+      local target
+      if step < 400 then
+        target = dark and 0.97 or 0.22
+        t = math.min(1, t * 1.15)
+      else
+        target = dark and 0.18 or 0.98
+        t = math.min(1, t * 0.9)
+      end
+      steps[step] = oklch_to_hex(L + (target - L) * t, C * (1 - 0.5 * (math.abs(step - 400) / 500)), H)
+    end
+  end
+  return steps
+end
+
+-- Minimal ordered JSON writer: { __kind = "obj", pairs = { {key, value}, … } }
+-- and { __kind = "arr", items = { … } } keep the generated file stable.
+local function obj(pairs) return { __kind = "obj", pairs = pairs } end
+local function arr(items) return { __kind = "arr", items = items } end
+
+local function json(value, indent)
+  indent = indent or ""
+  local kind = type(value) == "table" and value.__kind
+  if kind == "arr" then
+    local parts = {}
+    for _, item in ipairs(value.items) do
+      table.insert(parts, json(item, indent .. "  "))
+    end
+    return "[\n" .. indent .. "  " .. table.concat(parts, ",\n" .. indent .. "  ") .. "\n" .. indent .. "]"
+  elseif kind == "obj" then
+    local parts = {}
+    for _, pair in ipairs(value.pairs) do
+      table.insert(parts, string.format('%s  "%s": %s', indent, pair[1], json(pair[2], indent .. "  ")))
+    end
+    return "{\n" .. table.concat(parts, ",\n") .. "\n" .. indent .. "}"
+  elseif type(value) == "string" then
+    return '"' .. value .. '"'
+  end
+  error("cannot encode " .. type(value))
+end
+
+local function neutral_scale(p)
+  return obj({
+    { "100", p.fg },
+    { "200", p.fg_dim },
+    { "300", p.fg_muted },
+    { "400", p.fg_subtle },
+    { "500", p.surface2 },
+    { "600", p.surface1 },
+    { "700", p.surface0 },
+    { "800", p.bg_alt },
+    { "900", p.bg },
+  })
+end
+
+local function hue_block(p)
+  local function scale(key)
+    return obj((function()
+      local out = {}
+      for _, step in ipairs({ 100, 200, 300, 400, 500, 600, 700, 800, 900 }) do
+        table.insert(out, { tostring(step), hue_ramp(p[key], p.variant)[step] })
+      end
+      return out
+    end)())
+  end
+  return obj({
+    { "gray", neutral_scale(p) },
+    { "red", scale("red") },
+    { "orange", scale("orange") },
+    { "yellow", scale("yellow") },
+    { "green", scale("green") },
+    -- Kissa calls this hue teal; OpenCode's standard scale name is cyan.
+    { "cyan", scale("teal") },
+    { "blue", scale("blue") },
+    { "purple", scale("purple") },
+    { "pink", scale("pink") },
+    -- Macchiato's accent is yellow; Latte's is blue (yellow is too pale on
+    -- #F5F4F0 to carry an accent role at AA).
+    { "accent", p.variant == "dark" and "$hue.yellow" or "$hue.blue" },
+    { "interactive", "$hue.blue" },
+    { "neutral", "$hue.gray" },
+  })
+end
+
+local function diff_block(p)
+  return obj({
+    { "text", obj({
+      { "added", "$hue.green.400" },
+      { "removed", "$hue.red.400" },
+      -- Context text and line numbers are readable text, not chrome:
+      -- Latte uses fg_muted so they clear AA on bg_alt.
+      { "context", p.variant == "light" and "$hue.neutral.300" or "$hue.neutral.400" },
+      { "hunkHeader", "$hue.blue.400" },
+    }) },
+    { "background", obj({
+      { "added", p.diff_add_bg },
+      { "removed", p.diff_remove_bg },
+      -- Context lines keep the plain background so context text clears AA
+      -- without darkening the neutral used for added/removed fills.
+      { "context", "$background.base" },
+    }) },
+    -- Highlight is the +/- sign itself, so it uses the diff text colors.
+    { "highlight", obj({
+      { "added", "$hue.green.400" },
+      { "removed", "$hue.red.400" },
+    }) },
+    { "lineNumber", obj({
+      { "text", p.variant == "light" and "$hue.neutral.300" or "$hue.neutral.400" },
+      -- The gutter stays untinted; line fills and +/- signs carry the state.
+      { "background", obj({
+        { "added", "$background.base" },
+        { "removed", "$background.base" },
+      }) },
+    }) },
+  })
+end
+
+local function mode_tokens(p)
+  local light = p.variant == "light"
+  local text = {
+    -- OpenCode renders reasoning text with muted, and menus render it on
+    -- background.raised.base. Latte's fg_muted only reaches 4.18:1 there,
+    -- so light mode steps up to fg_dim; Macchiato uses fg_subtle.
+    { "muted", light and "$hue.neutral.200" or "$hue.neutral.400" },
+  }
+  if not light then
+    -- Plain red is 4.46:1 on raised panels in dark mode; the bright ANSI red
+    -- is part of the palette and clears AA there (5.53:1).
+    table.insert(text, { "feedback", obj({
+      { "error", obj({ { "base", p.red_bright } }) },
+    }) })
+  end
+  return obj({
+    { "hue", hue_block(p) },
+    { "text", obj(text) },
+    { "diff", diff_block(p) },
+    { "markdown", obj({
+      { "blockQuote", light and "$hue.neutral.300" or "$hue.neutral.400" },
+      { "listEnumeration", light and "$hue.neutral.300" or "$hue.neutral.400" },
+    }) },
+  })
+end
+
 function M.opencode(p)
   local d = p.macchiato
-  local l = p.latte
-  local tokens = {
-    primary            = { d.blue,         l.blue },
-    secondary          = { d.fg_muted,     l.fg_muted },
-    accent             = { d.yellow,       l.blue },
-    error              = { d.red,          l.red },
-    warning            = { d.yellow,       l.yellow },
-    success            = { d.green,        l.green },
-    info               = { d.blue,         l.blue },
-    text               = { d.fg,           l.fg },
-    -- Latte's fg_subtle (#91887D) is only 3.17:1 on the light background
-    -- and is perceptually almost identical to Macchiato's fg_subtle, so
-    -- muted UI text (including OpenCode's reasoning text) reads the same in
-    -- both modes. Use fg_muted for Latte; it reaches 4.70:1.
-    textMuted          = { d.fg_subtle,    l.fg_muted },
-    background         = { d.bg,           l.bg },
-    backgroundPanel    = { d.bg_alt,       l.bg_alt },
-    backgroundElement  = { d.surface0,     l.surface0 },
-    border             = { d.surface1,     l.surface1 },
-    borderActive       = { d.blue,         l.blue },
-    borderSubtle       = { d.surface0,     l.surface0 },
-    diffAdded          = { d.green,        l.green },
-    diffRemoved        = { d.red,          l.red },
-    -- These are text colors, not backgrounds: diffContext is used for
-    -- context text and diffHighlight* for the +/- signs in the diff view.
-    diffContext        = { d.fg_subtle,    l.fg_muted },
-    diffHunkHeader     = { d.blue,         l.blue },
-    diffHighlightAdded    = { d.green,     l.green },
-    diffHighlightRemoved = { d.red,       l.red },
-    diffAddedBg          = { "#2D3A28",   "#D8ECD0" },
-    diffRemovedBg        = { "#3A2222",   "#ECD0D0" },
-    diffContextBg         = { d.bg_alt,     l.bg_alt },
-    diffLineNumber       = { d.fg_subtle,  l.fg_muted },
-    diffAddedLineNumberBg    = { "#2D3A28",   "#C8E0B8" },
-    diffRemovedLineNumberBg = { "#3A2222",   "#E0B8B8" },
-    markdownText         = { d.fg,           l.fg },
-    markdownHeading      = { d.blue,         l.blue },
-    markdownLink         = { d.teal,         l.teal },
-    markdownLinkText     = { d.yellow,       l.yellow },
-    markdownCode         = { d.green,        l.green },
-    markdownBlockQuote   = { d.fg_subtle,    l.fg_muted },
-    markdownEmph         = { d.purple,       l.purple },
-    markdownStrong        = { d.fg_dim,       l.fg_dim },
-    markdownHorizontalRule = { d.surface1,    l.surface1 },
-    markdownListItem     = { d.fg,           l.fg },
-    markdownListEnumeration = { d.fg_subtle, l.fg_muted },
-    markdownImage        = { d.teal,         l.teal },
-    markdownImageText    = { d.teal,         l.teal },
-    markdownCodeBlock    = { d.green,        l.green },
-    syntaxComment       = { d.fg_subtle,    l.fg_subtle },
-    syntaxKeyword       = { d.blue,         l.blue },
-    syntaxFunction       = { d.blue,         l.blue },
-    syntaxVariable      = { d.fg_dim,       l.fg_dim },
-    syntaxString        = { d.green,        l.green },
-    syntaxNumber        = { d.orange,        l.orange },
-    syntaxType          = { d.teal,          l.teal },
-    syntaxOperator      = { d.orange,        l.orange },
-    syntaxPunctuation   = { d.fg_dim,       l.fg_dim },
-    syntaxConstant      = { d.purple,        l.purple },
-  }
-  local lines = {
-    '{',
-    '  "$schema": "https://opencode.ai/theme.json",',
-    '  "theme": {',
-  }
-  local keys = {}
-  for k in pairs(tokens) do table.insert(keys, k) end
-  table.sort(keys)
-  for i, k in ipairs(keys) do
-    local v = tokens[k]
-    local comma = i < #keys and "," or ""
-    table.insert(lines, string.format('    "%s": { "dark": "%s", "light": "%s" }%s', k, v[1], v[2], comma))
-  end
-  table.insert(lines, '  }')
-  table.insert(lines, '}')
-  return table.concat(lines, "\n")
+  local base = obj({
+    { "categorical", arr({ "blue", "purple", "cyan", "green", "orange", "red", "pink" }) },
+    { "text", obj({
+      { "base", "$hue.neutral.100" },
+      { "muted", "$hue.neutral.300" },
+      { "action", obj({
+        { "primary", obj({
+          { "base", "$text.base" },
+          { "$selected", "$hue.interactive.400" },
+          { "$disabled", "$hue.neutral.300" },
+        }) },
+        { "secondary", obj({
+          { "base", "$text.muted" },
+          { "$hovered", "$text.base" },
+        }) },
+        { "destructive", obj({
+          -- Text on a filled destructive action uses the mode's background,
+          -- which is the highest-contrast neutral in both palettes.
+          { "base", "$hue.neutral.900" },
+          { "$disabled", "$hue.neutral.300" },
+        }) },
+      }) },
+      { "formfield", obj({
+        { "base", "$text.base" },
+        { "$hovered", "$hue.interactive.400" },
+        { "$focused", "$hue.interactive.400" },
+        { "$pressed", "$hue.interactive.400" },
+        { "$disabled", "$text.muted" },
+        { "$selected", "$hue.interactive.400" },
+      }) },
+      { "feedback", obj({
+        { "error", obj({ { "base", "$hue.red.400" } }) },
+        { "warning", obj({ { "base", "$hue.yellow.400" } }) },
+        { "success", obj({ { "base", "$hue.green.400" } }) },
+        { "info", obj({ { "base", "$hue.blue.400" } }) },
+      }) },
+    }) },
+    { "background", obj({
+      { "base", "$hue.neutral.900" },
+      { "raised", obj({
+        { "base", "$hue.neutral.800" },
+        { "high", "$hue.neutral.700" },
+        { "max", "$hue.neutral.600" },
+      }) },
+      { "action", obj({
+        { "primary", obj({
+          { "base", "transparent" },
+          { "$hovered", "$hue.neutral.700" },
+          { "$focused", "$hue.interactive.600" },
+          { "$selected", "transparent" },
+        }) },
+        { "secondary", obj({ { "base", "transparent" } }) },
+        { "destructive", obj({ { "base", "$hue.red.400" } }) },
+      }) },
+      { "formfield", obj({ { "base", "$background.base" } }) },
+      { "feedback", obj({
+        { "error", obj({ { "base", "$background.base" } }) },
+        { "warning", obj({ { "base", "$background.base" } }) },
+        { "success", obj({ { "base", "$background.base" } }) },
+        { "info", obj({ { "base", "$background.base" } }) },
+      }) },
+    }) },
+    { "border", obj({ { "base", "$hue.neutral.600" } }) },
+    { "scrollbar", obj({ { "base", "$hue.neutral.500" } }) },
+    { "diff", diff_block(d) },
+    { "syntax", obj({
+      { "comment", "$hue.neutral.400" },
+      { "keyword", "$hue.blue.400" },
+      { "function", "$hue.blue.400" },
+      { "variable", "$hue.neutral.200" },
+      { "string", "$hue.green.400" },
+      { "number", "$hue.orange.400" },
+      { "type", "$hue.cyan.400" },
+      { "operator", "$hue.orange.400" },
+      { "punctuation", "$hue.neutral.200" },
+    }) },
+    { "markdown", obj({
+      { "text", "$hue.neutral.100" },
+      { "heading", "$hue.blue.400" },
+      { "link", "$hue.cyan.400" },
+      { "linkText", "$hue.yellow.400" },
+      { "code", "$hue.green.400" },
+      { "blockQuote", "$hue.neutral.400" },
+      { "emphasis", "$hue.purple.400" },
+      { "strong", "$hue.neutral.200" },
+      { "horizontalRule", "$hue.neutral.600" },
+      { "listItem", "$hue.neutral.100" },
+      { "listEnumeration", "$hue.neutral.400" },
+      { "image", "$hue.cyan.400" },
+      { "imageText", "$hue.cyan.400" },
+      { "codeBlock", "$hue.green.400" },
+    }) },
+    { "@dialog", obj({
+      { "text", obj({
+        -- fg_muted only clears AA on the base background; dialogs sit on a
+        -- raised surface, so step up to fg_dim for muted text and labels.
+        { "muted", "$hue.neutral.200" },
+        { "action", obj({
+          { "secondary", obj({ { "base", "$text.base" } }) },
+        }) },
+      }) },
+      { "background", obj({
+        { "base", "$background.raised.base" },
+        { "action", obj({
+          { "primary", obj({ { "$hovered", "$background.raised.max" } }) },
+          { "secondary", obj({ { "$hovered", "$background.raised.max" } }) },
+        }) },
+      }) },
+      { "@footer", obj({
+        { "text", obj({ { "muted", "$hue.neutral.200" } }) },
+      }) },
+    }) },
+  })
+
+  return json(obj({
+    { "$schema", "https://opencode.ai/theme.json" },
+    { "base", base },
+    { "light", mode_tokens(p.latte) },
+    { "dark", mode_tokens(p.macchiato) },
+  })) .. "\n"
 end
 
 function M.base16_yaml(p, name, variant_name)
@@ -423,21 +667,21 @@ function M.run()
       "",
     }
     local sections = {
-      colors = { "bg", "bg_alt", "surface0", "surface1", "surface2", "fg", "fg_dim", "fg_muted", "fg_subtle", "red", "orange", "yellow", "green", "teal", "blue", "purple", "pink" },
-      ansi = { "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white", "black_bright", "red_bright", "green_bright", "yellow_bright", "blue_bright", "magenta_bright", "cyan_bright", "white_bright" },
+      {
+        header = "[colors]",
+        keys = { "bg", "bg_alt", "surface0", "surface1", "surface2", "fg", "fg_dim", "fg_muted", "fg_subtle", "red", "orange", "yellow", "green", "teal", "blue", "purple", "pink", "diff_add_bg", "diff_remove_bg" },
+      },
+      {
+        header = "[terminal]",
+        source = p.ansi,
+        keys = { "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white", "black_bright", "red_bright", "green_bright", "yellow_bright", "blue_bright", "magenta_bright", "cyan_bright", "white_bright" },
+      },
     }
-    for sec, keys in pairs(sections) do
-      if sec == "ansi" then
-        table.insert(lines, "[terminal]")
-      else
-        table.insert(lines, "[" .. sec .. "]")
-      end
-      for _, k in ipairs(keys) do
-        if sec == "ansi" then
-          table.insert(lines, k .. " = \"" .. p.ansi[k] .. "\"")
-        else
-          table.insert(lines, k .. " = \"" .. p[k] .. "\"")
-        end
+    for _, sec in ipairs(sections) do
+      table.insert(lines, sec.header)
+      local source = sec.source or p
+      for _, k in ipairs(sec.keys) do
+        table.insert(lines, k .. " = \"" .. source[k] .. "\"")
       end
       table.insert(lines, "")
     end

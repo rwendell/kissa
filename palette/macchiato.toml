@@ -19,6 +19,8 @@ teal = "#6AB8B0"
 blue = "#7FA8D4"
 purple = "#B094CC"
 pink = "#CC88AA"
+diff_add_bg = "#2D3A28"
+diff_remove_bg = "#3A2222"
 
 [terminal]
 black = "#1F1C16"

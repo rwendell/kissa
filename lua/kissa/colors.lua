@@ -32,6 +32,10 @@ M.palettes = {
     blue_bright   = "#98BCE6",
     purple_bright = "#C4ACE0",
     teal_bright   = "#84CCC4",
+    -- filled diff hunk backgrounds, used by ports that tint whole lines
+    -- (OpenCode). Tuned so green/red diff text keeps WCAG AA on the fill.
+    diff_add_bg    = "#2D3A28",
+    diff_remove_bg = "#3A2222",
     -- terminal ANSI mapping
     ansi = {
       black   = "#1F1C16",
@@ -80,6 +84,10 @@ M.palettes = {
     blue_bright   = "#29578E",
     purple_bright = "#552F8A",
     teal_bright   = "#1F5E5E",
+    -- filled diff hunk backgrounds, used by ports that tint whole lines
+    -- (OpenCode). Tuned so green/red diff text keeps WCAG AA on the fill.
+    diff_add_bg    = "#D8ECD0",
+    diff_remove_bg = "#ECD0D0",
     -- terminal ANSI mapping
     ansi = {
       black   = "#1F1C16",

@@ -22,6 +22,25 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 }
 ```
 
+### OpenCode
+
+Copy the theme into OpenCode's global themes directory, then pick `kissa` with
+`/themes` or set it in `~/.config/opencode/cli.json`:
+
+```sh
+mkdir -p ~/.config/opencode/themes
+cp extras/opencode/kissa.json ~/.config/opencode/themes/
+```
+
+```json title="~/.config/opencode/cli.json"
+{
+  "theme": { "name": "kissa", "mode": "system" }
+}
+```
+
+The port uses OpenCode's native v2 theme format: Latte and Macchiato share one
+semantic token tree, and each mode carries the full nine-step hue scales.
+
 ## Palette
 
 | Color | Macchiato | Latte | Usage |
@@ -37,12 +56,14 @@ Using [lazy.nvim](https://github.com/folke/lazy.nvim):
 | `fg_subtle` | ![#B8A48C](https://placehold.co/22x22/B8A48C/B8A48C) | ![#91887D](https://placehold.co/22x22/91887D/91887D) | Comments |
 | `red` | ![#E87777](https://placehold.co/22x22/E87777/E87777) | ![#9E3E3E](https://placehold.co/22x22/9E3E3E/9E3E3E) | Errors, deletes |
 | `orange` | ![#DA9050](https://placehold.co/22x22/DA9050/DA9050) | ![#8F5D22](https://placehold.co/22x22/8F5D22/8F5D22) | Operators, numbers |
-| `yellow` | ![#EAC67A](https://placehold.co/22x22/EAC67A/EAC67A) | ![#7D6820](https://placehold.co/22x22/7D6820/7D6820) | Strings, warnings |
-| `green` | ![#8CB870](https://placehold.co/22x22/8CB870/8CB870) | ![#387050](https://placehold.co/22x22/387050/387050) | Functions, diff-add |
+| `yellow` | ![#EAC67A](https://placehold.co/22x22/EAC67A/EAC67A) | ![#7D6820](https://placehold.co/22x22/7D6820/7D6820) | Labels, warnings, TODOs |
+| `green` | ![#8CB870](https://placehold.co/22x22/8CB870/8CB870) | ![#387050](https://placehold.co/22x22/387050/387050) | Strings, diff-add |
 | `teal` | ![#6AB8B0](https://placehold.co/22x22/6AB8B0/6AB8B0) | ![#287070](https://placehold.co/22x22/287070/287070) | Types, regex |
-| `blue` | ![#7FA8D4](https://placehold.co/22x22/7FA8D4/7FA8D4) | ![#3468A8](https://placehold.co/22x22/3468A8/3468A8) | Keywords, links |
-| `purple` | ![#B094CC](https://placehold.co/22x22/B094CC/B094CC) | ![#6438A0](https://placehold.co/22x22/6438A0/6438A0) | Constants |
-| `pink` | ![#CC88AA](https://placehold.co/22x22/CC88AA/CC88AA) | ![#943A68](https://placehold.co/22x22/943A68/943A68) | Properties |
+| `blue` | ![#7FA8D4](https://placehold.co/22x22/7FA8D4/7FA8D4) | ![#3468A8](https://placehold.co/22x22/3468A8/3468A8) | Functions, keywords, links |
+| `purple` | ![#B094CC](https://placehold.co/22x22/B094CC/B094CC) | ![#6438A0](https://placehold.co/22x22/6438A0/6438A0) | Constants, statements |
+| `pink` | ![#CC88AA](https://placehold.co/22x22/CC88AA/CC88AA) | ![#943A68](https://placehold.co/22x22/943A68/943A68) | Properties, preprocessor, macros |
+| `diff_add_bg` | ![#2D3A28](https://placehold.co/22x22/2D3A28/2D3A28) | ![#D8ECD0](https://placehold.co/22x22/D8ECD0/D8ECD0) | Filled diff added lines |
+| `diff_remove_bg` | ![#3A2222](https://placehold.co/22x22/3A2222/3A2222) | ![#ECD0D0](https://placehold.co/22x22/ECD0D0/ECD0D0) | Filled diff removed lines |
 
 ## Ports
 
