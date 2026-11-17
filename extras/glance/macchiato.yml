@@ -1,0 +1,13 @@
+# Kissa Macchiato for Glance
+# https://github.com/rwendell/kissa
+#
+# Copy this block into your glance.yml, or use presets.yml to install both
+# variants as theme presets.
+
+theme:
+  background-color: 40 17 10
+  contrast-multiplier: 1.15
+  text-saturation-multiplier: 1.6
+  primary-color: 211 50 66
+  positive-color: 97 34 58
+  negative-color: 0 71 69

@@ -41,6 +41,20 @@ cp extras/opencode/kissa.json ~/.config/opencode/themes/
 The port uses OpenCode's native v2 theme format: Latte and Macchiato share one
 semantic token tree, and each mode carries the full nine-step hue scales.
 
+### Glance
+
+Copy the matching theme block from `extras/glance/` into your Glance
+configuration, or install both variants as presets:
+
+- [`macchiato.yml`](extras/glance/macchiato.yml)
+- [`latte.yml`](extras/glance/latte.yml)
+- [`presets.yml`](extras/glance/presets.yml)
+
+See [`extras/glance/README.md`](extras/glance/README.md) for details and the
+palette mapping. For automatic light/dark switching, use the
+[Theme Switcher](https://github.com/rwendell/glance-plugins/tree/main/theme-switcher)
+plugin.
+
 ## Palette
 
 | Color | Macchiato | Latte | Usage |
@@ -78,6 +92,7 @@ semantic token tree, and each mode carries the full nine-step hue scales.
 | iTerm2 | [`extras/iterm2/`](extras/iterm2/) |
 | XResources | [`extras/xresources/`](extras/xresources/) |
 | OpenCode | [`extras/opencode/`](extras/opencode/) |
+| Glance | [`extras/glance/`](extras/glance/) |
 | Base16 | [`base16/`](base16/) |
 | Palette TOML | [`palette/`](palette/) |
 

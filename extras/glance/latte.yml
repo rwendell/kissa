@@ -1,0 +1,14 @@
+# Kissa Latte for Glance
+# https://github.com/rwendell/kissa
+#
+# Copy this block into your glance.yml, or use presets.yml to install both
+# variants as theme presets.
+
+theme:
+  light: true
+  background-color: 48 20 95
+  contrast-multiplier: 1
+  text-saturation-multiplier: 1.6
+  primary-color: 213 53 43
+  positive-color: 146 33 33
+  negative-color: 0 44 43
