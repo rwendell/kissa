@@ -52,7 +52,7 @@ configuration, or install both variants as presets:
 
 See [`extras/glance/README.md`](extras/glance/README.md) for details and the
 palette mapping. For automatic light/dark switching, use the
-[Theme Switcher](https://github.com/rwendell/glance-plugins/tree/main/theme-switcher)
+[Theme Switcher](https://github.com/rwendell/glance-plugins/tree/main/plugins/theme-switcher)
 plugin.
 
 ## Palette

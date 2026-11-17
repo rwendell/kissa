@@ -35,7 +35,7 @@ theme:
 
 Then pick **Kissa Macchiato** or **Kissa Latte** from Glance's theme picker.
 
-For automatic light/dark switching, use the [Theme Switcher](https://github.com/rwendell/glance-plugins/tree/main/theme-switcher) plugin. It ships a Kissa palette example and follows the OS preference while keeping the picker usable.
+For automatic light/dark switching, use the [Theme Switcher](https://github.com/rwendell/glance-plugins/tree/main/plugins/theme-switcher) plugin. It ships a Kissa palette example and follows the OS preference while keeping the picker usable.
 
 ## Palette mapping
 
